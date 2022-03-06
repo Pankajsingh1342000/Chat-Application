@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SetupProfileActivity"
+    tools:context=".Activities.SetupProfileActivity"
     android:background="@color/phonenumber_background">
 
     <de.hdodenhof.circleimageview.CircleImageView

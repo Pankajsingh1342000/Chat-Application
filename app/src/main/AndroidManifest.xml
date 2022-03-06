@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.chatapplication">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,14 +15,17 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".SetupProfileActivity"
+            android:name=".Activities.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".OTPActivity"
+            android:name=".Activities.SetupProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.OTPActivity"
             android:exported="false"
             android:windowSoftInputMode="stateVisible" />
         <activity
-            android:name=".PhoneNumberActivity"
+            android:name=".Activities.PhoneNumberActivity"
             android:exported="true"
             android:windowSoftInputMode="stateVisible">
             <intent-filter>
@@ -32,8 +35,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

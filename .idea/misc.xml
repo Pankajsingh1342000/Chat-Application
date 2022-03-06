@@ -3,10 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/drawable-v24/recieve_drawable.xml" value="0.2265" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/drawable/circle_send.xml" value="0.2245" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/drawable/sent_drawable.xml" value="0.2265" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/activity_chat.xml" value="0.264" />
         <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/activity_main.xml" value="0.2427536231884058" />
         <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/activity_otpactivity.xml" value="0.18297101449275363" />
         <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/activity_phone_number.xml" value="0.18297101449275363" />
         <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/activity_setup_profile.xml" value="0.18297101449275363" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/item_recieve.xml" value="0.8800000000000001" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/item_send.xml" value="0.264" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/loading_dialog.xml" value="0.23596014492753623" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/raw_conversation.xml" value="0.536" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/layout/row_conversation.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/menu/menu.xml" value="0.264" />
+        <entry key="..\:/Users/Pankaj Singh/AndroidStudioProjects/ChatApplication/app/src/main/res/menu/topmenu.xml" value="0.25052083333333336" />
       </map>
     </option>
   </component>

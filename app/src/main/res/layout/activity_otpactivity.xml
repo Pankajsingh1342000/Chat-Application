@@ -76,7 +76,8 @@
                 android:textColor="@android:color/black"
                 app:OtpItemCount="6"
                 app:OtpLineColor="@color/btn_color"
-                app:OtpViewType="line" />
+                app:OtpViewType="line"
+                android:focusableInTouchMode="true"/>
 
             <Button
                 android:id="@+id/continueBtn"

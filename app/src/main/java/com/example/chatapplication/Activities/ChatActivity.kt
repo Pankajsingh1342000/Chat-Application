@@ -103,7 +103,6 @@ class ChatActivity : AppCompatActivity() {
             binding.messageBox.setText("")
         }
 
-
         supportActionBar?.title = name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

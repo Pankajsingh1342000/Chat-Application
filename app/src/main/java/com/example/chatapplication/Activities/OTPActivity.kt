@@ -1,9 +1,13 @@
 package com.example.chatapplication.Activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.getSystemService
 import com.example.chatapplication.R
 import com.example.chatapplication.databinding.ActivityOtpactivityBinding
 import com.example.chatapplication.utils.LoadingDialog
@@ -58,8 +62,11 @@ class OTPActivity : AppCompatActivity() {
                 override fun onCodeSent(verifyId: String, p1: PhoneAuthProvider.ForceResendingToken) {
                     super.onCodeSent(verifyId, p1)
                     loading.dismiss()
-
                     verificationId = verifyId
+                    val imm: InputMethodManager =
+                        getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+                    binding.otpView.requestFocus()
                 }
             }).build()
 

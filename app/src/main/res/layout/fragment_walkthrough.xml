@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.walkthrough.WalkthroughFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_walkthrough"
+            android:layout_width="@dimen/width_300"
+            android:layout_height="@dimen/height_300"
+            android:contentDescription="@string/walk_through_image"
+            android:src="@drawable/walkthrough_image"
+            app:layout_constraintBottom_toTopOf="@id/tv_walkthrough"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_walkthrough"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_30"
+            android:text="@string/walkthrough_text"
+            android:textAlignment="center"
+            android:textSize="@dimen/size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_walkthrough" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_walkthrough"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_30"
+            android:text="@string/start_messaging"
+            android:textSize="@dimen/size_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_walkthrough"
+            android:padding="@dimen/padding_18"
+            android:layout_marginStart="@dimen/margin_16"
+            android:backgroundTint="?attr/backgroundTint"
+            android:layout_marginEnd="@dimen/margin_16"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/walkthroughFragment">
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.chatapplication.HomeFragment"
-        android:label="HomeFragment" />
+        android:id="@+id/walkthroughFragment"
+        android:name="com.chatapplication.ui.walkthrough.WalkthroughFragment"
+        android:label="fragment_walkthrough"
+        tools:layout="@layout/fragment_walkthrough" />
 </navigation>

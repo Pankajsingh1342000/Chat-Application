@@ -28,7 +28,7 @@
             android:layout_marginTop="@dimen/margin_30"
             android:text="@string/walkthrough_text"
             android:textAlignment="center"
-            android:textSize="@dimen/size_24"
+            android:textSize="@dimen/heading02"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

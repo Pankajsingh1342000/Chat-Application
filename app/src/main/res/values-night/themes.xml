@@ -44,5 +44,6 @@
         <item name="colorOutline">@color/dark_outline</item>
         <item name="colorOutlineVariant">@color/dark_outline_variant</item>
         <item name="backgroundTint">@color/dark_background_tint</item>
+        <item name="android:textColor">@color/dark_text_color</item>
     </style>
 </resources>

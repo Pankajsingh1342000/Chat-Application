@@ -3,10 +3,14 @@
     //Image
     <dimen name="width_300">300dp</dimen>
     <dimen name="height_300">300dp</dimen>
+    <dimen name="width_262">262dp</dimen>
+    <dimen name="height_271">271dp</dimen>
     //Margin
     <dimen name="margin_30">30dp</dimen>
     <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
     //Text Size
+    <dimen name="size_24">24sp</dimen>
     <dimen name="size_30">30sp</dimen>
     <dimen name="size_18">18sp</dimen>
     //padding

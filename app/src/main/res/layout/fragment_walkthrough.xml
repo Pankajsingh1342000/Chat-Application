@@ -10,8 +10,8 @@
 
         <ImageView
             android:id="@+id/iv_walkthrough"
-            android:layout_width="@dimen/width_300"
-            android:layout_height="@dimen/height_300"
+            android:layout_width="@dimen/width_262"
+            android:layout_height="@dimen/height_271"
             android:contentDescription="@string/walk_through_image"
             android:src="@drawable/walkthrough_image"
             app:layout_constraintBottom_toTopOf="@id/tv_walkthrough"
@@ -28,7 +28,7 @@
             android:layout_marginTop="@dimen/margin_30"
             android:text="@string/walkthrough_text"
             android:textAlignment="center"
-            android:textSize="@dimen/size_30"
+            android:textSize="@dimen/size_24"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             android:id="@+id/btn_walkthrough"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_30"
+            android:layout_marginTop="@dimen/margin_100"
             android:text="@string/start_messaging"
             android:textSize="@dimen/size_18"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -13,6 +13,9 @@
     <dimen name="heading02">24sp</dimen>
     <dimen name="body02">14sp</dimen>
     <dimen name="size_18">18sp</dimen>
+
     //padding
     <dimen name="padding_18">18dp</dimen>
+    <dimen name="screen_padding">16dp</dimen>
+
 </resources>

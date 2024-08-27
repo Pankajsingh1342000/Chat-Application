@@ -70,6 +70,8 @@
     <color name="light_surface_container_lowest">#FFFFFF</color>
     <color name="light_surface_bright">#FEF7FF</color>
     <color name="light_surface_dim">#DED8E1</color>
+    <color name="light_hint_color">#ADB5BD</color>
+    <color name="light_cpp_color">#ADB5BD</color>
 
     // Dark Theme
     // Primary Color
@@ -135,6 +137,7 @@
     <color name="dark_surface_container_lowest">#0F0D13</color>
     <color name="dark_surface_bright">#3B383E</color>
     <color name="dark_surface_dim">#141218</color>
-
+    <color name="dark_hint_color">#F7F7FC</color>
+    <color name="dark_cpp_color">#F7F7FC</color>
 
 </resources>

@@ -6,4 +6,6 @@
     <string name="start_messaging">Start Messaging</string>
     <string name="enter_your_phone_number">Enter Your Phone Number</string>
     <string name="enter_county_code">Please confirm your country code and enter\nyour phone number</string>
+    <string name="continue_text">Continue</string>
+    <string name="phone_number">Phone Number</string>
 </resources>

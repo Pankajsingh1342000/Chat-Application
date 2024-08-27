@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/screen_padding">
 
+
         <TextView
             android:id="@+id/tv_enter_your_phone_number"
             android:layout_width="wrap_content"
@@ -38,31 +39,49 @@
             android:id="@+id/phone_number_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_enter_country_code">
+            app:layout_constraintTop_toBottomOf="@id/tv_enter_country_code"
+            app:layout_constraintVertical_bias="0.120000005">
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/country_code_picker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:ccp_contentColor="?attr/android:textColorHint"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_phone_number_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textColorHint="?attr/android:textColorHint">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_phone_number"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"
+                    android:hint="@string/phone_number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/backgroundTint"
+            android:padding="@dimen/padding_18"
+            android:text="@string/continue_text"
+            android:textColor="@color/off_white"
+            android:textSize="@dimen/size_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_number_layout"
+            app:layout_constraintVertical_bias="0.24000001" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

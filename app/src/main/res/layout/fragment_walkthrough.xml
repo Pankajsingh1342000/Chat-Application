@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintVertical_bias="0.20999998"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -40,16 +40,17 @@
             android:id="@+id/btn_walkthrough"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_100"
+            android:backgroundTint="?attr/backgroundTint"
+            android:padding="@dimen/padding_18"
             android:text="@string/start_messaging"
-            android:textSize="@dimen/size_18"
+            android:textColor="@color/off_white"
+            android:textSize="@dimen/subheading01"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_walkthrough"
-            android:padding="@dimen/padding_18"
-            android:textColor="@color/off_white"
-            android:backgroundTint="?attr/backgroundTint"/>
+            app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

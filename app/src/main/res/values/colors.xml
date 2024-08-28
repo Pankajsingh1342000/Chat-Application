@@ -3,8 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="off_white">#F7F7FC</color>
-    <color name="light_text_color">#0F1828</color>
-    <color name="dark_text_color">#F7F7FC</color>
+
 
     // Light Theme
     // Primary Color
@@ -51,6 +50,7 @@
     <color name="light_background">#FEF7FF</color>
     <color name="light_on_background">#1D1B20</color>
     <color name="light_background_tint">#002DE3</color>
+    <color name="light_edt_background_color">#F7F7FC</color>
 
     // Surface Color
     <color name="light_surface">#FEF7FF</color>
@@ -72,6 +72,7 @@
     <color name="light_surface_dim">#DED8E1</color>
     <color name="light_hint_color">#ADB5BD</color>
     <color name="light_cpp_color">#ADB5BD</color>
+    <color name="light_text_color">#0F1828</color>
 
     // Dark Theme
     // Primary Color
@@ -118,6 +119,7 @@
     <color name="dark_background">#141218</color>
     <color name="dark_on_background">#E6E0E9</color>
     <color name="dark_background_tint">#375FFF</color>
+    <color name="dark_edt_background_color">#152033</color>
 
     // Surface Color
     <color name="dark_surface">#141218</color>
@@ -139,5 +141,6 @@
     <color name="dark_surface_dim">#141218</color>
     <color name="dark_hint_color">#F7F7FC</color>
     <color name="dark_cpp_color">#F7F7FC</color>
+    <color name="dark_text_color">#F7F7FC</color>
 
 </resources>

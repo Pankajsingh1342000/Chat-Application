@@ -15,6 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/enter_your_phone_number"
+            android:textAlignment="center"
+            android:textStyle="bold"
             android:textSize="@dimen/heading02"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,13 +35,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_enter_your_phone_number"
-            app:layout_constraintVertical_bias="0.01999998" />
+            app:layout_constraintVertical_bias="0.029999971" />
 
         <LinearLayout
             android:id="@+id/phone_number_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:gravity="bottom"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,38 +52,53 @@
             <com.hbb20.CountryCodePicker
                 android:id="@+id/country_code_picker"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                app:ccp_textSize="@dimen/subheading02"
+                app:ccpDialog_textColor="?attr/android:textColorHint"
                 app:ccp_contentColor="?attr/android:textColorHint"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_phone_number_input_layout"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="?attr/android:textColorHint">
+                android:hint="@string/phone_number"
+                android:textColorHint="?attr/android:textColorHint"
+                android:textSize="@dimen/subheading02"
+                android:textColor="?attr/android:textColorHint"
+                style="@style/Widget.Material3.TextInputEditText.FilledBox"
+                />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/phone_number"/>
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/edt_phone_number_input_layout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColorHint="?attr/android:textColorHint">-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/edt_phone_number"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:hint="@string/phone_number"/>-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_100"
             android:backgroundTint="?attr/backgroundTint"
             android:padding="@dimen/padding_18"
             android:text="@string/continue_text"
             android:textColor="@color/off_white"
-            android:textSize="@dimen/size_18"
+            android:textSize="@dimen/subheading01"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phone_number_layout"
-            app:layout_constraintVertical_bias="0.24000001" />
+            app:layout_constraintVertical_bias="0.9" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

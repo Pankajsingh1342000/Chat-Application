@@ -8,4 +8,6 @@
     <string name="enter_county_code">Please confirm your country code and enter\nyour phone number</string>
     <string name="continue_text">Continue</string>
     <string name="phone_number">Phone Number</string>
+    <string name="terms_privacy_policy"><![CDATA[Terms & Privacy Policy]]></string>
+    <string name="back_button">Back Button</string>
 </resources>

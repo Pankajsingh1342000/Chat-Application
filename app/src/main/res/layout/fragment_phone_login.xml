@@ -7,7 +7,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/screen_padding_horizontal">
+        android:paddingHorizontal="@dimen/screen_padding_horizontal"
+        android:paddingVertical="@dimen/screen_padding_vertical">
+
+        <ImageView
+            android:id="@+id/iv_back_icon"
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:contentDescription="@string/back_button"
+            android:src="@drawable/ic_back_icon"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -16,13 +29,14 @@
             android:layout_height="wrap_content"
             android:text="@string/enter_your_phone_number"
             android:textAlignment="center"
-            android:textStyle="bold"
             android:textSize="@dimen/heading02"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_62sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_back_icon"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tv_enter_country_code"
@@ -31,11 +45,12 @@
             android:gravity="center"
             android:text="@string/enter_county_code"
             android:textSize="@dimen/body02"
+            android:layout_marginTop="@dimen/_7sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_enter_your_phone_number"
-            app:layout_constraintVertical_bias="0.029999971" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
             android:id="@+id/phone_number_layout"
@@ -43,70 +58,54 @@
             android:layout_height="wrap_content"
             android:gravity="bottom"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_39sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_enter_country_code"
-            app:layout_constraintVertical_bias="0.120000005">
+            app:layout_constraintVertical_bias="0.0">
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/country_code_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:background="@drawable/bg_edit_text"
                 android:gravity="center_vertical"
-                app:ccp_textSize="@dimen/subheading02"
                 app:ccpDialog_textColor="?attr/HintColor"
                 app:ccp_contentColor="?attr/HintColor"
-                android:background="@drawable/bg_edit_text"/>
+                app:ccp_textSize="@dimen/body02" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/phone_number"
                 android:layout_marginStart="8dp"
-                android:paddingVertical="6dp"
-                android:paddingHorizontal="8dp"
-                android:maxLines="1"
-                android:maxLength="11"
-                android:inputType="phone"
-                android:gravity="center_vertical"
-                android:textColorHint="?attr/HintColor"
-                android:textSize="@dimen/subheading02"
-                android:textColor="?attr/HintColor"
                 android:background="@drawable/bg_edit_text"
-                />
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/edt_phone_number_input_layout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColorHint="?attr/android:textColorHint">-->
-
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/edt_phone_number"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:hint="@string/phone_number"/>-->
-
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
+                android:gravity="center_vertical"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="6dp"
+                android:textColor="?attr/HintColor"
+                android:textColorHint="?attr/HintColor"
+                android:textSize="@dimen/body02" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_100"
-            android:padding="@dimen/padding_12"
-            android:text="@string/continue_text"
             android:backgroundTint="?attr/ButtonBackgroundColor"
+            android:paddingVertical="@dimen/padding_12"
+            android:text="@string/continue_text"
             android:textColor="@color/off_white"
-            android:textSize="@dimen/subheading01"
+            android:textSize="@dimen/subheading02"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phone_number_layout"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -37,6 +37,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_walkthrough" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_terms_privacy_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_14sdp"
+            android:text="@string/terms_privacy_policy"
+            android:textSize="@dimen/subheading02"
+            app:layout_constraintBottom_toTopOf="@id/btn_walkthrough"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_walkthrough"
+            app:layout_constraintVertical_bias="1.0" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_walkthrough"
             android:layout_width="match_parent"
@@ -48,10 +61,9 @@
             android:textSize="@dimen/subheading02"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_walkthrough"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -62,4 +62,8 @@ dependencies {
 
     //Country Code Picker
     implementation(libs.ccp)
+
+    //Intuit(sdp)
+    implementation(libs.sdp.android)
+    implementation(libs.ssp.android)
 }

@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
     //Image
-    <dimen name="width_300">300dp</dimen>
-    <dimen name="height_300">300dp</dimen>
-    <dimen name="width_262">262dp</dimen>
-    <dimen name="height_271">271dp</dimen>
+    <dimen name="width_300">@dimen/_300sdp</dimen>
+    <dimen name="height_300">@dimen/_300sdp</dimen>
+    <dimen name="width_262">@dimen/_202sdp</dimen>
+    <dimen name="height_271">@dimen/_209sdp</dimen>
     //Margin
-    <dimen name="margin_30">30dp</dimen>
-    <dimen name="margin_16">16dp</dimen>
-    <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_42">@dimen/_32sdp</dimen>
+    <dimen name="margin_16">@dimen/_16sdp</dimen>
+    <dimen name="margin_100">@dimen/_100sdp</dimen>
     //Text Size
-    <dimen name="heading01">32sp</dimen>
-    <dimen name="heading02">24sp</dimen>
-    <dimen name="subheading01">18sp</dimen>
-    <dimen name="subheading02">16sp</dimen>
-    <dimen name="body02">14sp</dimen>
-    <dimen name="size_18">18sp</dimen>
+    <dimen name="heading01">@dimen/_32ssp</dimen>
+    <dimen name="heading02">@dimen/_19ssp</dimen>
+    <dimen name="subheading01">@dimen/_15ssp</dimen>
+    <dimen name="subheading02">@dimen/_13ssp</dimen>
+    <dimen name="body02">@dimen/_14ssp</dimen>
+    <dimen name="size_18">@dimen/_18ssp</dimen>
 
     //padding
-    <dimen name="padding_18">18dp</dimen>
-    <dimen name="screen_padding_horizontal">25dp</dimen>
-    <dimen name="screen_padding_vertical">20dp</dimen>
+    <dimen name="padding_12">@dimen/_10sdp</dimen>
+    <dimen name="screen_padding_horizontal">@dimen/_19sdp</dimen>
+    <dimen name="screen_padding_vertical">@dimen/_16sdp</dimen>
+
+
+
+<!--    //Image-->
+<!--    <dimen name="width_300">300dp</dimen>-->
+<!--    <dimen name="height_300">300dp</dimen>-->
+<!--    <dimen name="width_262">262dp</dimen>-->
+<!--    <dimen name="height_271">271dp</dimen>-->
+<!--    //Margin-->
+<!--    <dimen name="margin_30">30dp</dimen>-->
+<!--    <dimen name="margin_16">16dp</dimen>-->
+<!--    <dimen name="margin_100">100dp</dimen>-->
+<!--    //Text Size-->
+<!--    <dimen name="heading01">32sp</dimen>-->
+<!--    <dimen name="heading02">24sp</dimen>-->
+<!--    <dimen name="subheading01">18sp</dimen>-->
+<!--    <dimen name="subheading02">16sp</dimen>-->
+<!--    <dimen name="body02">14sp</dimen>-->
+<!--    <dimen name="size_18">18sp</dimen>-->
+
+<!--    //padding-->
+<!--    <dimen name="padding_18">18dp</dimen>-->
+<!--    <dimen name="screen_padding_horizontal">25dp</dimen>-->
+<!--    <dimen name="screen_padding_vertical">20dp</dimen>-->
 
 </resources>

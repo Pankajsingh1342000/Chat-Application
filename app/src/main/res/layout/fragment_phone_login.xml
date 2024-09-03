@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/screen_padding">
+        android:paddingHorizontal="@dimen/screen_padding_horizontal">
 
 
         <TextView
@@ -53,20 +53,28 @@
                 android:id="@+id/country_code_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="bottom"
+                android:gravity="center_vertical"
                 app:ccp_textSize="@dimen/subheading02"
-                app:ccpDialog_textColor="?attr/android:textColorHint"
-                app:ccp_contentColor="?attr/android:textColorHint"/>
+                app:ccpDialog_textColor="?attr/HintColor"
+                app:ccp_contentColor="?attr/HintColor"
+                android:background="@drawable/bg_edit_text"/>
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
-                android:textColorHint="?attr/android:textColorHint"
+                android:layout_marginStart="8dp"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="8dp"
+                android:maxLines="1"
+                android:maxLength="11"
+                android:inputType="phone"
+                android:gravity="center_vertical"
+                android:textColorHint="?attr/HintColor"
                 android:textSize="@dimen/subheading02"
-                android:textColor="?attr/android:textColorHint"
-                style="@style/Widget.Material3.TextInputEditText.FilledBox"
+                android:textColor="?attr/HintColor"
+                android:background="@drawable/bg_edit_text"
                 />
 
 <!--            <com.google.android.material.textfield.TextInputLayout-->
@@ -89,9 +97,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_100"
-            android:backgroundTint="?attr/backgroundTint"
             android:padding="@dimen/padding_18"
             android:text="@string/continue_text"
+            android:backgroundTint="?attr/ButtonBackgroundColor"
             android:textColor="@color/off_white"
             android:textSize="@dimen/subheading01"
             app:layout_constraintBottom_toBottomOf="parent"

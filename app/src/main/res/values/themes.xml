@@ -1,51 +1,57 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.ChatApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/light_primary</item>
-        <item name="colorOnPrimary">@color/light_on_primary</item>
-        <item name="colorPrimaryInverse">@color/light_inverse_primary</item>
-        <item name="colorPrimaryContainer">@color/light_primary_container</item>
-        <item name="colorOnPrimaryContainer">@color/light_on_primary_container</item>
-        <item name="colorPrimaryFixed">@color/light_primary_fixed</item>
-        <item name="colorPrimaryFixedDim">@color/light_primary_fixed_dem</item>
-        <item name="colorOnPrimaryFixed">@color/light_on_primary_fixed</item>
-        <item name="colorOnPrimaryFixedVariant">@color/light_on_primary_fixed_variant</item>
-        <item name="colorSecondary">@color/light_secondary</item>
-        <item name="colorOnSecondary">@color/light_on_secondary</item>
-        <item name="colorSecondaryContainer">@color/light_secondary_container</item>
-        <item name="colorOnSecondaryContainer">@color/light_on_secondary_container</item>
-        <item name="colorSecondaryFixed">@color/light_secondary_fixed</item>
-        <item name="colorSecondaryFixedDim">@color/light_secondary_fixed_dem</item>
-        <item name="colorOnSecondaryFixed">@color/light_on_secondary_fixed</item>
-        <item name="colorOnSecondaryFixedVariant">@color/light_on_secondary_fixed_variant</item>
-        <item name="colorTertiary">@color/light_tertiary</item>
-        <item name="colorOnTertiary">@color/light_on_tertiary</item>
-        <item name="colorTertiaryContainer">@color/light_tertiary_container</item>
-        <item name="colorOnTertiaryContainer">@color/light_on_tertiary_container</item>
-        <item name="colorTertiaryFixed">@color/light_tertiary_fixed</item>
-        <item name="colorTertiaryFixedDim">@color/light_tertiary_fixed_dem</item>
-        <item name="colorOnTertiaryFixed">@color/light_on_tertiary_fixed</item>
-        <item name="colorOnTertiaryFixedVariant">@color/light_tertiary_fixed_variant</item>
-        <item name="android:colorBackground">@color/light_background</item>
-        <item name="colorOnBackground">@color/light_on_background</item>
-        <item name="colorSurface">@color/light_surface</item>
-        <item name="colorOnSurface">@color/light_on_surface</item>
-        <item name="colorSurfaceVariant">@color/light_surface_variant</item>
-        <item name="colorOnSurfaceVariant">@color/light_on_surface_variant</item>
-        <item name="colorSurfaceInverse">@color/light_inverse_surface</item>
-        <item name="colorOnSurfaceInverse">@color/light_inverse_on_surface</item>
-        <item name="colorSurfaceBright">@color/light_surface_bright</item>
-        <item name="colorSurfaceDim">@color/light_surface_dim</item>
-        <item name="colorSurfaceContainer">@color/light_surface_container</item>
-        <item name="colorSurfaceContainerLow">@color/light_surface_container_low</item>
-        <item name="colorSurfaceContainerHigh">@color/light_surface_container_high</item>
-        <item name="colorSurfaceContainerLowest">@color/light_surface_container_lowest</item>
-        <item name="colorSurfaceContainerHighest">@color/light_surface_container_highest</item>
-        <item name="colorOutline">@color/light_outline</item>
-        <item name="colorOutlineVariant">@color/light_outline_variant</item>
-        <item name="backgroundTint">@color/light_background_tint</item>
-        <item name="android:textColor">@color/light_text_color</item>
-        <item name="android:textColorHint">@color/light_hint_color</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryInverse">@color/inverse_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+        <item name="colorPrimaryFixed">@color/primary_fixed</item>
+        <item name="colorPrimaryFixedDim">@color/primary_fixed_dem</item>
+        <item name="colorOnPrimaryFixed">@color/on_primary_fixed</item>
+        <item name="colorOnPrimaryFixedVariant">@color/on_primary_fixed_variant</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/on_secondary_container</item>
+        <item name="colorSecondaryFixed">@color/secondary_fixed</item>
+        <item name="colorSecondaryFixedDim">@color/secondary_fixed_dem</item>
+        <item name="colorOnSecondaryFixed">@color/on_secondary_fixed</item>
+        <item name="colorOnSecondaryFixedVariant">@color/on_secondary_fixed_variant</item>
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/on_tertiary_container</item>
+        <item name="colorTertiaryFixed">@color/tertiary_fixed</item>
+        <item name="colorTertiaryFixedDim">@color/tertiary_fixed_dem</item>
+        <item name="colorOnTertiaryFixed">@color/on_tertiary_fixed</item>
+        <item name="colorOnTertiaryFixedVariant">@color/tertiary_fixed_variant</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/on_background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        <item name="colorSurfaceInverse">@color/inverse_surface</item>
+        <item name="colorOnSurfaceInverse">@color/inverse_on_surface</item>
+        <item name="colorSurfaceBright">@color/surface_bright</item>
+        <item name="colorSurfaceDim">@color/surface_dim</item>
+        <item name="colorSurfaceContainer">@color/surface_container</item>
+        <item name="colorSurfaceContainerLow">@color/surface_container_low</item>
+        <item name="colorSurfaceContainerHigh">@color/surface_container_high</item>
+        <item name="colorSurfaceContainerLowest">@color/surface_container_lowest</item>
+        <item name="colorSurfaceContainerHighest">@color/surface_container_highest</item>
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
+
+
+
+        <item name="android:textColor">@color/text_color</item>
+        <item name="HintColor">@color/hint_color</item>
+        <item name="ButtonBackgroundColor">@color/background_tint</item>
+        <item name="TextFieldBackgroundColor">@color/input_text_field_color</item>
+
+
     </style>
 
     <style name="Theme.ChatApplication" parent="Base.Theme.ChatApplication" />

@@ -19,6 +19,7 @@
 
     //padding
     <dimen name="padding_18">18dp</dimen>
-    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="screen_padding_horizontal">25dp</dimen>
+    <dimen name="screen_padding_vertical">20dp</dimen>
 
 </resources>

@@ -11,4 +11,5 @@
     <string name="terms_privacy_policy"><![CDATA[Terms & Privacy Policy]]></string>
     <string name="back_button">Back Button</string>
     <string name="enter_code">Enter Code</string>
+    <string name="resend_code">Resend Code</string>
 </resources>

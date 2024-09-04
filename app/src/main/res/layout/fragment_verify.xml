@@ -135,6 +135,18 @@
 
 
         </LinearLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_14sdp"
+            android:text="@string/resend_code"
+            android:textSize="@dimen/subheading02"
+            app:layout_constraintBottom_toTopOf="@id/btn_continue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otp_layout"
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_continue"

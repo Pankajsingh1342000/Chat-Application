@@ -10,4 +10,5 @@
     <string name="phone_number">Phone Number</string>
     <string name="terms_privacy_policy"><![CDATA[Terms & Privacy Policy]]></string>
     <string name="back_button">Back Button</string>
+    <string name="enter_code">Enter Code</string>
 </resources>

@@ -3,4 +3,5 @@
     <attr name="ButtonBackgroundColor" format="color"/>
     <attr name="TextFieldBackgroundColor" format="color"/>
     <attr name="HintColor" format="color"/>
+    <attr name="TextFieldTextColor" format="color"/>
 </resources>

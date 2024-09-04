@@ -74,4 +74,5 @@
     <color name="text_color">#F7F7FC</color>
 
     <color name="input_text_field_color">#152033</color>
+    <color name="text_field_text_color">@color/off_white</color>
 </resources>

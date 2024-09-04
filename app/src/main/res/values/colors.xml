@@ -75,5 +75,6 @@
     <color name="text_color">#0F1828</color>
 
     <color name="input_text_field_color">#F7F7FC</color>
+    <color name="text_field_text_color">#1D1B20</color>
 
 </resources>

@@ -17,7 +17,8 @@
     <dimen name="subheading01">@dimen/_15ssp</dimen>
     <dimen name="subheading02">@dimen/_13ssp</dimen>
     <dimen name="body02">@dimen/_11ssp</dimen>
-    <dimen name="size_18">@dimen/_18ssp</dimen>
+    <dimen name="size_18">@dimen/_14ssp</dimen>
+    <dimen name="size_16">@dimen/_12ssp</dimen>
 
     //padding
     <dimen name="padding_12">@dimen/_10sdp</dimen>

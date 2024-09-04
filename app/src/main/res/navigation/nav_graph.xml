@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/phoneLoginFragment">
+    app:startDestination="@id/verifyFragment">
     <fragment
-        android:id="@+id/phoneLoginFragment"
-        android:name="com.chatapplication.ui.authentication.fragment.PhoneLoginFragment"
-        android:label="fragment_phone_login"
-        tools:layout="@layout/fragment_phone_login" />
+        android:id="@+id/verifyFragment"
+        android:name="com.chatapplication.ui.authentication.fragment.VerifyFragment"
+        android:label="fragment_verify"
+        tools:layout="@layout/fragment_verify" />
 </navigation>

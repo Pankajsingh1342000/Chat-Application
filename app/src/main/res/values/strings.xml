@@ -12,4 +12,6 @@
     <string name="back_button">Back Button</string>
     <string name="enter_code">Enter Code</string>
     <string name="resend_code">Resend Code</string>
+    <string name="we_have_sent">We have sent an SMS with a code to</string>
+    <string name="_6388130586">6388130586</string>
 </resources>

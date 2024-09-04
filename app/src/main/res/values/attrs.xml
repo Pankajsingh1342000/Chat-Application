@@ -4,4 +4,5 @@
     <attr name="TextFieldBackgroundColor" format="color"/>
     <attr name="HintColor" format="color"/>
     <attr name="TextFieldTextColor" format="color"/>
+    <attr name="ProfileBack" format="color"/>
 </resources>

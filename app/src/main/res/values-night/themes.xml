@@ -52,6 +52,8 @@
         <item name="TextFieldBackgroundColor">@color/input_text_field_color</item>
         <item name="TextFieldTextColor">@color/text_field_text_color</item>
 
+        <item name="ProfileBack">@color/profile_back</item>
+
 
     </style>
 </resources>

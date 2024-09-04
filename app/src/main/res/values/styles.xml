@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RoundImageView">
+        <item name="cornerSize">50%</item>
+        <item name="backgroundColor">?attr/ProfileBack</item>
+    </style>
+</resources>

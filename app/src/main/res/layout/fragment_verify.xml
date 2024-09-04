@@ -12,9 +12,8 @@
 
         <ImageView
             android:id="@+id/iv_back_icon"
-            android:layout_width="@dimen/_13sdp"
-            android:layout_height="@dimen/_13sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_width="@dimen/size_18"
+            android:layout_height="@dimen/size_18"
             android:contentDescription="@string/back_button"
             android:src="@drawable/ic_back_icon"
             app:layout_constraintEnd_toEndOf="parent"

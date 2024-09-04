@@ -14,4 +14,10 @@
     <string name="resend_code">Resend Code</string>
     <string name="we_have_sent">We have sent an SMS with a code to</string>
     <string name="_6388130586">6388130586</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="first_name_required">First Name (Required)</string>
+    <string name="last_name_required">Last Name (Required)</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="save">Save</string>
 </resources>

@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_chats"
+        android:id="@+id/chatsFragment"
         android:title="@string/chats"
         android:icon="@drawable/ic_chat_icon"/>
 
     <item
-        android:id="@+id/nav_updates"
+        android:id="@+id/updatesFragment"
         android:title="@string/updates"
         android:icon="@drawable/ic_update_icon"/>
 
     <item
-        android:id="@+id/nav_calls"
+        android:id="@+id/callsFragment"
         android:title="@string/calls"
         android:icon="@drawable/ic_call_icon"/>
 

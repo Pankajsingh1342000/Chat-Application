@@ -8,9 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.chatapplication.ui.feature.call.fragment.CallsFragment
-import com.chatapplication.ui.feature.chat.fragment.ChatsFragment
-import com.chatapplication.ui.feature.update.fragment.UpdatesFragment
+import com.chatapplication.ui.feature.call.fragment.CallsHostFragment
+import com.chatapplication.ui.feature.chat.fragment.ChatsHostFragment
+import com.chatapplication.ui.feature.update.fragment.UpdatesHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
             override fun createFragment(position: Int): Fragment {
 
                 return when (position) {
-                    0 -> ChatsFragment()   // Chats
-                    1 -> UpdatesFragment() // Updates
-                    2 -> CallsFragment()   // Calls
-                    else -> ChatsFragment()
+                    0 -> ChatsHostFragment()   // Chats
+                    1 -> UpdatesHostFragment() // Updates
+                    2 -> CallsHostFragment()   // Calls
+                    else -> ChatsHostFragment()
                 }
             }
         }

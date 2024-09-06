@@ -5,15 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chatapplication.databinding.FragmentUpdatesBinding
+import com.chatapplication.databinding.FragmentHostUpdatesBinding
 
-class UpdatesFragment : Fragment() {
-    private lateinit var binding: FragmentUpdatesBinding
+class UpdatesHostFragment : Fragment() {
+    private lateinit var binding: FragmentHostUpdatesBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentUpdatesBinding.inflate(layoutInflater)
+        binding = FragmentHostUpdatesBinding.inflate(layoutInflater)
         return binding.root
     }
 }

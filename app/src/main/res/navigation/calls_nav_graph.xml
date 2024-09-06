@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/calls_nav_graph"
+    app:startDestination="@id/callsFragment">
+
+    <fragment
+        android:id="@+id/callsFragment"
+        android:name="com.chatapplication.ui.feature.call.fragment.CallsFragment"
+        android:label="fragment_calls"
+        tools:layout="@layout/fragment_calls" />
+</navigation>

@@ -1,6 +1,7 @@
 package com.chatapplication
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,37 +15,71 @@ import com.chatapplication.ui.feature.update.fragment.UpdatesHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var viewPager: ViewPager2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+
+        initViews()
+        setupWindowInsets()
+        setupViewPager()
+        setupBottomNavigation()
+    }
+
+    // Initialize views
+    private fun initViews() {
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
+        viewPager = findViewById(R.id.view_pager)
+    }
+
+    // Setup window insets for proper padding
+    private fun setupWindowInsets() {
+        val mainLayout = findViewById<View>(R.id.main)
+        ViewCompat.setOnApplyWindowInsetsListener(mainLayout) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+
+            // Apply padding for status and navigation bars
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            bottomNavigationView.setPadding(0, 0, 0, systemBars.bottom)
+
             insets
         }
+    }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        val viewPager = findViewById<ViewPager2>(R.id.view_pager)
-
+    // Setup ViewPager2 and its adapter
+    private fun setupViewPager() {
         viewPager.adapter = object : FragmentStateAdapter(this) {
-
-            override fun getItemCount(): Int {
-                return 3
-            }
+            override fun getItemCount() = 3
 
             override fun createFragment(position: Int): Fragment {
-
                 return when (position) {
-                    0 -> ChatsHostFragment()   // Chats
-                    1 -> UpdatesHostFragment() // Updates
-                    2 -> CallsHostFragment()   // Calls
+                    0 -> ChatsHostFragment()
+                    1 -> UpdatesHostFragment()
+                    2 -> CallsHostFragment()
                     else -> ChatsHostFragment()
                 }
             }
         }
 
-        // Sync ViewPager2 swipes with BottomNavigationView clicks
+        // Sync ViewPager2 swipe with BottomNavigationView item selection
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                bottomNavigationView.selectedItemId = when (position) {
+                    0 -> R.id.chatsFragment
+                    1 -> R.id.updatesFragment
+                    2 -> R.id.callsFragment
+                    else -> R.id.chatsFragment
+                }
+            }
+        })
+    }
+
+    // Setup BottomNavigationView interactions
+    private fun setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.chatsFragment -> viewPager.setCurrentItem(0, true)
@@ -53,19 +88,5 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        // Sync ViewPager2 swipe with BottomNavigationView item selection
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                when (position) {
-                    0 -> bottomNavigationView.selectedItemId = R.id.chatsFragment
-                    1 -> bottomNavigationView.selectedItemId = R.id.updatesFragment
-                    2 -> bottomNavigationView.selectedItemId = R.id.callsFragment
-                }
-            }
-        })
-
-
     }
-
 }

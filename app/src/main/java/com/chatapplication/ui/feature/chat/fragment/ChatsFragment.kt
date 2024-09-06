@@ -5,16 +5,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chatapplication.R
+import com.chatapplication.MainActivity
+import com.chatapplication.databinding.FragmentChatsBinding
+import com.chatapplication.util.SharedPreferenceManager
 
 class ChatsFragment : Fragment() {
+
+    private lateinit var binding: FragmentChatsBinding
+    private lateinit var sharedPreference: SharedPreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chats, container, false)
+    ): View {
+        binding = FragmentChatsBinding.inflate(layoutInflater)
+        sharedPreference = SharedPreferenceManager(requireContext())
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnChatLogout.setOnClickListener{
+            sharedPreference.logout()
+            (activity as? MainActivity)?.showAuthContent()
+        }
     }
 
 }

@@ -7,23 +7,53 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.chatapplication.ui.feature.call.fragment.CallsHostFragment
 import com.chatapplication.ui.feature.chat.fragment.ChatsHostFragment
 import com.chatapplication.ui.feature.update.fragment.UpdatesHostFragment
+import com.chatapplication.util.SharedPreferenceManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewPager: ViewPager2
+    private lateinit var sharedPreferences: SharedPreferenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        sharedPreferences = SharedPreferenceManager(this)
+
+        if(sharedPreferences.isAuthenticated()){
+            showMainContent()
+        }
+        else{
+            showAuthContent()
+        }
+
+    }
+
+    fun showAuthContent() {
+        findViewById<ViewPager2>(R.id.view_pager).visibility = View.GONE
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.GONE
+        findViewById<FragmentContainerView>(R.id.auth_nav_host_fragment).visibility = View.VISIBLE
+
+    }
+
+    fun showMainContent() {
+        findViewById<FragmentContainerView>(R.id.auth_nav_host_fragment).visibility = View.GONE
+        findViewById<ViewPager2>(R.id.view_pager).visibility = View.VISIBLE
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.VISIBLE
+
+        setUpMainContent()
+    }
+
+    private fun setUpMainContent() {
         initViews()
         setupWindowInsets()
         setupViewPager()

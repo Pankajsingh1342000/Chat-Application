@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/walkthroughFragment">
+
+    <fragment
+        android:id="@+id/walkthroughFragment"
+        android:name="com.chatapplication.ui.walkthrough.WalkthroughFragment"
+        android:label="fragment_walkthrough"
+        tools:layout="@layout/fragment_walkthrough" >
+        <action
+            android:id="@+id/action_walkthroughFragment_to_phoneLoginFragment"
+            app:destination="@id/phoneLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneLoginFragment"
+        android:name="com.chatapplication.ui.authentication.fragment.PhoneLoginFragment"
+        android:label="fragment_phone_login"
+        tools:layout="@layout/fragment_phone_login" >
+        <action
+            android:id="@+id/action_phoneLoginFragment_to_verifyFragment"
+            app:destination="@id/verifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyFragment"
+        android:name="com.chatapplication.ui.authentication.fragment.VerifyFragment"
+        android:label="fragment_verify"
+        tools:layout="@layout/fragment_verify" />
+</navigation>

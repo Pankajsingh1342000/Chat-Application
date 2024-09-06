@@ -7,12 +7,22 @@ class SharedPreferenceManager(context: Context) {
 
     private val prefs: SharedPreferences = context.getSharedPreferences("chat_app_prefs", Context.MODE_PRIVATE)
 
-    fun setUserLoggedIn(isLoggedin: Boolean){
-        prefs.edit().putBoolean("is_logged_in", isLoggedin).apply()
+    companion object {
+        private const val IS_AUTHENTICATED = "is_authenticated"
     }
 
-    fun isUserLoggedIn(): Boolean{
-        return prefs.getBoolean("is_logged_in", false)
+    fun setAuthenticationStatus(isAuthenticated: Boolean){
+        val editor = prefs.edit()
+        editor.putBoolean(IS_AUTHENTICATED, isAuthenticated)
+        editor.apply()
+    }
+
+    fun isAuthenticated(): Boolean {
+        return prefs.getBoolean(IS_AUTHENTICATED, false)
+    }
+
+    fun logout() {
+        prefs.edit().clear().apply()
     }
 
 }

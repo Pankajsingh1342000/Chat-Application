@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.chatapplication.MainActivity
+import com.chatapplication.R
 import com.chatapplication.databinding.FragmentVerifyBinding
 import com.chatapplication.util.SharedPreferenceManager
 
@@ -32,6 +35,7 @@ class VerifyFragment : Fragment() {
 
     private fun onSuccessfulVerification() {
         sharedPreference.setAuthenticationStatus(true)
+        findNavController().popBackStack(R.id.phoneLoginFragment, true)
         (activity as? MainActivity)?.showMainContent()
     }
 }

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewPager: ViewPager2
+    private lateinit var authNavHostFragment: FragmentContainerView
     private lateinit var sharedPreferences: SharedPreferenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<ViewPager2>(R.id.view_pager).visibility = View.GONE
         findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.GONE
         findViewById<FragmentContainerView>(R.id.auth_nav_host_fragment).visibility = View.VISIBLE
+        setUpMainContent()
 
     }
 
@@ -60,13 +62,12 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigation()
     }
 
-    // Initialize views
     private fun initViews() {
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         viewPager = findViewById(R.id.view_pager)
+        authNavHostFragment = findViewById(R.id.auth_nav_host_fragment)
     }
 
-    // Setup window insets for proper padding
     private fun setupWindowInsets() {
         val mainLayout = findViewById<View>(R.id.main)
         ViewCompat.setOnApplyWindowInsetsListener(mainLayout) { view, insets ->
@@ -75,12 +76,12 @@ class MainActivity : AppCompatActivity() {
             // Apply padding for status and navigation bars
             view.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             bottomNavigationView.setPadding(0, 0, 0, systemBars.bottom)
+            authNavHostFragment.setPadding(0, 0, 0, systemBars.bottom)
 
             insets
         }
     }
 
-    // Setup ViewPager2 and its adapter
     private fun setupViewPager() {
         viewPager.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount() = 3
@@ -95,7 +96,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Sync ViewPager2 swipe with BottomNavigationView item selection
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 bottomNavigationView.selectedItemId = when (position) {
@@ -108,7 +108,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    // Setup BottomNavigationView interactions
     private fun setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {

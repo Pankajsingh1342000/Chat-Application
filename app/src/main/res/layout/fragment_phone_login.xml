@@ -4,107 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.authentication.fragment.PhoneLoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/screen_padding_horizontal"
-        android:paddingVertical="@dimen/screen_padding_vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_back_icon"
-            android:layout_width="@dimen/size_18"
-            android:layout_height="@dimen/size_18"
-            android:contentDescription="@string/back_button"
-            android:src="@drawable/ic_back_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/tv_enter_your_phone_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enter_your_phone_number"
-            android:textAlignment="center"
-            android:textSize="@dimen/heading02"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_62sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_back_icon"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tv_enter_country_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/enter_county_code"
-            android:textSize="@dimen/size_16"
-            android:layout_marginTop="@dimen/_7sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_enter_your_phone_number"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <LinearLayout
-            android:id="@+id/phone_number_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_39sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_enter_country_code"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:paddingVertical="@dimen/screen_padding_vertical">
 
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/country_code_picker"
+            <ImageView
+                android:id="@+id/iv_back_icon"
+                android:layout_width="@dimen/size_18"
+                android:layout_height="@dimen/size_18"
+                android:contentDescription="@string/back_button"
+                android:src="@drawable/ic_back_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_enter_your_phone_number"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center_vertical"
-                app:ccpDialog_textColor="?attr/TextFieldTextColor"
-                app:ccp_contentColor="?attr/TextFieldTextColor"
-                app:ccp_textSize="@dimen/size_16" />
+                android:layout_height="wrap_content"
+                android:text="@string/enter_your_phone_number"
+                android:textAlignment="center"
+                android:textSize="@dimen/heading02"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/_62sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_back_icon"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_phone_number"
+            <TextView
+                android:id="@+id/tv_enter_country_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/enter_county_code"
+                android:textSize="@dimen/size_16"
+                android:layout_marginTop="@dimen/_7sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_enter_your_phone_number"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+                android:id="@+id/phone_number_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:background="@drawable/bg_edit_text"
-                android:gravity="center_vertical"
-                android:hint="@string/phone_number"
-                android:inputType="phone"
-                android:maxLength="11"
-                android:maxLines="1"
-                android:paddingHorizontal="@dimen/_6sdp"
-                android:paddingVertical="@dimen/_5sdp"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textColorHint="?attr/HintColor"
-                android:textSize="@dimen/size_16" />
-        </LinearLayout>
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_39sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_enter_country_code"
+                app:layout_constraintVertical_bias="0.0">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_continue"
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/country_code_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="center_vertical"
+                    app:ccpDialog_textColor="?attr/TextFieldTextColor"
+                    app:ccp_contentColor="?attr/TextFieldTextColor"
+                    app:ccp_textSize="@dimen/size_16" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="center_vertical"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textColorHint="?attr/HintColor"
+                    android:textSize="@dimen/size_16" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_continue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/ButtonBackgroundColor"
+                android:paddingVertical="@dimen/padding_12"
+                android:text="@string/continue_text"
+                android:textColor="@color/off_white"
+                android:textSize="@dimen/subheading02"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_number_layout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/blur_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="?attr/ButtonBackgroundColor"
-            android:paddingVertical="@dimen/padding_12"
-            android:text="@string/continue_text"
-            android:textColor="@color/off_white"
-            android:textSize="@dimen/subheading02"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone_number_layout" />
+            android:layout_height="match_parent"
+            android:background="@color/blur_background"
+            android:visibility="gone" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_bar"
@@ -112,12 +125,9 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:indeterminate="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_gravity="center"
             />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </layout>

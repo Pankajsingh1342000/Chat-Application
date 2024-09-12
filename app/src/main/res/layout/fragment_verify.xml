@@ -4,213 +4,239 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.authentication.fragment.VerifyFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/screen_padding_horizontal"
-        android:paddingVertical="@dimen/screen_padding_vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_back_icon"
-            android:layout_width="@dimen/size_18"
-            android:layout_height="@dimen/size_18"
-            android:contentDescription="@string/back_button"
-            android:src="@drawable/ic_back_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/enter_code_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_62sdp"
-            app:layout_constraintTop_toBottomOf="@id/iv_back_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/screen_padding_horizontal"
+            android:paddingVertical="@dimen/screen_padding_vertical">
 
-            <TextView
-                android:id="@+id/tv_enter_code"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/iv_back_icon"
+                android:layout_width="@dimen/size_18"
+                android:layout_height="@dimen/size_18"
+                android:contentDescription="@string/back_button"
+                android:src="@drawable/ic_back_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/enter_code_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enter_code"
-                android:textAlignment="center"
-                android:textSize="@dimen/heading02"
-                android:textStyle="bold"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_62sdp"
+                app:layout_constraintTop_toBottomOf="@id/iv_back_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_enter_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enter_code"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/heading02"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_back_icon"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_sent_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:gravity="center"
+                    android:text="@string/we_have_sent"
+                    android:textSize="@dimen/size_16"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_enter_code"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tv_phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/_6388130586"
+                    android:textSize="@dimen/size_16"
+                    app:layout_constraintBottom_toTopOf="@id/otp_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sent_code"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/otp_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_39sdp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_back_icon"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@id/enter_code_layout"
+                app:layout_constraintVertical_bias="0.0">
 
-            <TextView
-                android:id="@+id/tv_sent_code"
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_digit_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_otp_edit_text"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textSize="@dimen/heading02"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_digit_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_otp_edit_text"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textSize="@dimen/heading02"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_digit_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_otp_edit_text"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textSize="@dimen/heading02"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_digit_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_otp_edit_text"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textSize="@dimen/heading02"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_digit_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_otp_edit_text"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textSize="@dimen/heading02"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_otp_digit_6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_otp_edit_text"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:textAlignment="center"
+                    android:textColor="?attr/TextFieldTextColor"
+                    android:textSize="@dimen/heading02"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </LinearLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_resend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_7sdp"
-                android:gravity="center"
-                android:text="@string/we_have_sent"
-                android:textSize="@dimen/size_16"
+                android:layout_marginVertical="@dimen/_14sdp"
+                android:text="@string/resend_code"
+                android:textColor="?attr/TextFieldTextColor"
+                android:textSize="@dimen/subheading02"
+                app:layout_constraintBottom_toTopOf="@id/btn_continue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otp_layout"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_continue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/ButtonBackgroundColor"
+                android:paddingVertical="@dimen/padding_12"
+                android:text="@string/continue_text"
+                android:textColor="@color/off_white"
+                android:textSize="@dimen/subheading02"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_enter_code"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@id/otp_layout" />
 
-            <TextView
-                android:id="@+id/tv_phone_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/_6388130586"
-                android:textSize="@dimen/size_16"
-                app:layout_constraintBottom_toTopOf="@id/otp_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sent_code"
-                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/otp_layout"
+        <View
+            android:id="@+id/blur_background"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blur_background"
+            android:visibility="gone" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_100sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_39sdp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enter_code_layout"
-            app:layout_constraintVertical_bias="0.0">
+            android:visibility="gone"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            />
 
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_otp_digit_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_otp_edit_text"
-                android:inputType="number"
-                android:maxLength="1"
-                android:paddingVertical="@dimen/_12sdp"
-                android:textAlignment="center"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textSize="@dimen/heading02"
-                tools:ignore="SpeakableTextPresentCheck"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_otp_digit_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_otp_edit_text"
-                android:inputType="number"
-                android:maxLength="1"
-                android:paddingVertical="@dimen/_12sdp"
-                android:textAlignment="center"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textSize="@dimen/heading02"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_otp_digit_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_otp_edit_text"
-                android:inputType="number"
-                android:maxLength="1"
-                android:paddingVertical="@dimen/_12sdp"
-                android:textAlignment="center"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textSize="@dimen/heading02"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_otp_digit_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_otp_edit_text"
-                android:inputType="number"
-                android:maxLength="1"
-                android:paddingVertical="@dimen/_12sdp"
-                android:textAlignment="center"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textSize="@dimen/heading02"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_otp_digit_5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_otp_edit_text"
-                android:inputType="number"
-                android:maxLength="1"
-                android:paddingVertical="@dimen/_12sdp"
-                android:textAlignment="center"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textSize="@dimen/heading02"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_otp_digit_6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_otp_edit_text"
-                android:inputType="number"
-                android:maxLength="1"
-                android:paddingVertical="@dimen/_12sdp"
-                android:textAlignment="center"
-                android:textColor="?attr/TextFieldTextColor"
-                android:textSize="@dimen/heading02"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-
-        </LinearLayout>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_resend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_14sdp"
-            android:text="@string/resend_code"
-            android:textColor="?attr/TextFieldTextColor"
-            android:textSize="@dimen/subheading02"
-            app:layout_constraintBottom_toTopOf="@id/btn_continue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/otp_layout"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_continue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="?attr/ButtonBackgroundColor"
-            android:paddingVertical="@dimen/padding_12"
-            android:text="@string/continue_text"
-            android:textColor="@color/off_white"
-            android:textSize="@dimen/subheading02"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/otp_layout" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </layout>

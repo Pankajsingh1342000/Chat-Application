@@ -78,4 +78,6 @@
     <color name="text_field_text_color">#1D1B20</color>
     <color name="profile_back">#000000</color>
 
+    <color name="blur_background">#80000000</color>
+
 </resources>

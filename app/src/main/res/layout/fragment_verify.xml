@@ -164,6 +164,21 @@
                 android:textSize="@dimen/heading02"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_otp_digit_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_otp_edit_text"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingVertical="@dimen/_12sdp"
+                android:textAlignment="center"
+                android:textColor="?attr/TextFieldTextColor"
+                android:textSize="@dimen/heading02"
+                tools:ignore="SpeakableTextPresentCheck" />
+
 
         </LinearLayout>
 

@@ -15,6 +15,7 @@ import com.chatapplication.ui.feature.chat.fragment.ChatsHostFragment
 import com.chatapplication.ui.feature.update.fragment.UpdatesHostFragment
 import com.chatapplication.util.SharedPreferenceManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        FirebaseApp.initializeApp(this)
 
         sharedPreferences = SharedPreferenceManager(this)
 

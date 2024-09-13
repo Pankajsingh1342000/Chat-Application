@@ -1,6 +1,8 @@
 package com.chatapplication.ui.authentication.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.chatapplication.R
 import com.chatapplication.databinding.FragmentVerifyBinding
 import com.chatapplication.ui.authentication.viewmodel.AuthViewModel
 import com.chatapplication.util.SharedPreferenceManager
+import com.chatapplication.util.Util
 import com.google.android.material.textfield.TextInputEditText
 
 class VerifyFragment : Fragment(), View.OnClickListener {
@@ -34,6 +37,7 @@ class VerifyFragment : Fragment(), View.OnClickListener {
     private lateinit var blurBackground: View
     private lateinit var navController: NavController
     private lateinit var verificationId: String
+    private lateinit var otpFields: List<TextInputEditText>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +58,16 @@ class VerifyFragment : Fragment(), View.OnClickListener {
         navController = findNavController()
         val args = VerifyFragmentArgs.fromBundle(requireArguments())
         verificationId = args.verificationId
+
+        otpFields = listOf(
+            edtOtpDigit1,
+            edtOtpDigit2,
+            edtOtpDigit3,
+            edtOtpDigit4,
+            edtOtpDigit5,
+            edtOtpDigit6
+        )
+
         return binding.root
     }
 
@@ -61,6 +75,10 @@ class VerifyFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         setListeners()
         existingUserOrNot()
+        setOtpFieldListeners()
+    }
+    private fun setListeners(){
+        btnContinue.setOnClickListener(this)
     }
 
     private fun existingUserOrNot() {
@@ -81,15 +99,42 @@ class VerifyFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun setListeners(){
-        btnContinue.setOnClickListener(this)
-    }
+    private fun setOtpFieldListeners() {
 
+        for (i in otpFields.indices) {
+            otpFields[i].addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (s.isNullOrEmpty()) {
+                        if (i > 0) {
+                            otpFields[i - 1].requestFocus()
+                        }
+                    } else {
+                        if (i < otpFields.size - 1) {
+                            otpFields[i + 1].requestFocus()
+                        }
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    if (s != null && s.length == 1) {
+                        if (i < otpFields.size - 1) {
+                            otpFields[i + 1].requestFocus()
+                        }
+                    } else if (s.isNullOrEmpty() && i > 0) {
+                        otpFields[i - 1].requestFocus()
+                    }
+                }
+            })
+        }
+    }
     override fun onClick(v: View?) {
         when (v) {
             btnContinue -> {
                 blurBackground.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.VISIBLE
+                Util.KeyboardHelper.hideKeyboard(requireActivity())
                 val otpCode = edtOtpDigit1.text.toString().trim() +
                         edtOtpDigit2.text.toString().trim() +
                         edtOtpDigit3.text.toString().trim() +

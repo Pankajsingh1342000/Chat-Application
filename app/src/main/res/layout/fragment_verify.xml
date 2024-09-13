@@ -106,7 +106,9 @@
                     android:textAlignment="center"
                     android:textColor="?attr/TextFieldTextColor"
                     android:textSize="@dimen/heading02"
-                    tools:ignore="SpeakableTextPresentCheck"/>
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"/>
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_otp_digit_2"
@@ -122,7 +124,9 @@
                     android:textAlignment="center"
                     android:textColor="?attr/TextFieldTextColor"
                     android:textSize="@dimen/heading02"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_otp_digit_3"
@@ -138,7 +142,9 @@
                     android:textAlignment="center"
                     android:textColor="?attr/TextFieldTextColor"
                     android:textSize="@dimen/heading02"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_otp_digit_4"
@@ -154,7 +160,9 @@
                     android:textAlignment="center"
                     android:textColor="?attr/TextFieldTextColor"
                     android:textSize="@dimen/heading02"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_otp_digit_5"
@@ -170,7 +178,9 @@
                     android:textAlignment="center"
                     android:textColor="?attr/TextFieldTextColor"
                     android:textSize="@dimen/heading02"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_otp_digit_6"
@@ -186,7 +196,9 @@
                     android:textAlignment="center"
                     android:textColor="?attr/TextFieldTextColor"
                     android:textSize="@dimen/heading02"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
 
 
             </LinearLayout>

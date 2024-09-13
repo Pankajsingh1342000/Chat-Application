@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.chatapplication.databinding.FragmentPhoneLoginBinding
 import com.chatapplication.ui.authentication.viewmodel.AuthViewModel
+import com.chatapplication.util.Util
 import com.google.android.material.textfield.TextInputEditText
 import com.hbb20.CountryCodePicker
 
@@ -57,7 +58,7 @@ class PhoneLoginFragment : Fragment(), View.OnClickListener {
 
                 progressBar.visibility = View.VISIBLE
                 blurBackground.visibility = View.VISIBLE
-
+                Util.KeyboardHelper.hideKeyboard(requireActivity())
                 val phoneNumber = countryCodePicker.textView_selectedCountry.text.toString().trim() +
                         edtPhoneNumber.text.toString().trim()
 

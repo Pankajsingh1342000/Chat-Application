@@ -1,12 +1,17 @@
 package com.chatapplication.ui.authentication.fragment
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -16,6 +21,7 @@ import com.chatapplication.R
 import com.chatapplication.databinding.FragmentOnboardingBinding
 import com.chatapplication.ui.authentication.viewmodel.AuthViewModel
 import com.chatapplication.util.SharedPreferenceManager
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
@@ -27,8 +33,15 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
     private lateinit var edtLastName: TextInputEditText
     private lateinit var btnSave: Button
     private lateinit var btnBack: ImageView
+    private lateinit var ivProfileImage: ShapeableImageView
     private lateinit var navController: NavController
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var progressBar: ProgressBar
+    private var selectedImageUri: Uri? = null
+
+    companion object {
+        const val IMAGE_PICK_REQUEST_CODE = 1001
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +54,8 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
         edtLastName = binding.edtLastName
         btnSave = binding.btnSave
         btnBack = binding.ivBackIcon
+        ivProfileImage = binding.ivProfileImage
+        progressBar = binding.progressBar
         navController = findNavController()
         firebaseAuth = FirebaseAuth.getInstance()
         return binding.root
@@ -53,27 +68,61 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_PICK_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            selectedImageUri = data?.data
+            binding.ivProfileImage.setImageURI(selectedImageUri)  // Display selected image
+        }
+    }
+
     private fun setListeners() {
         btnSave.setOnClickListener(this)
+        ivProfileImage.setOnClickListener(this)
         btnBack.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v) {
             btnSave -> {
-                val userData = mapOf(
-                    "firstName" to edtFirstName.text.toString(),
-                    "lastName" to edtLastName.text.toString(),
-                    "phoneNumber" to firebaseAuth.currentUser?.phoneNumber.toString()
-                )
-                viewModel.saveNewUserToFirestore(userData)
-                sharedPreference.setAuthenticationStatus(true)
-                (activity as MainActivity).showMainContent()
-                navController.popBackStack(R.id.phoneLoginFragment, true)
+                progressBar.visibility = View.VISIBLE
+                if (selectedImageUri != null) {
+                    uploadProfileImageAndSaveUserData(selectedImageUri!!)
+                } else {
+                    progressBar.visibility = View.GONE
+                    saveUserData(null)  // Skip image upload
+                }
+            }
+            ivProfileImage -> {
+                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intent, IMAGE_PICK_REQUEST_CODE)
             }
             btnBack -> {
                 navController.navigate(R.id.action_onboardingFragment_to_walkthroughFragment)
             }
         }
+    }
+
+    private fun uploadProfileImageAndSaveUserData(imageUri: Uri) {
+        // Upload the selected image to Firebase Storage and save the user data
+        viewModel.uploadImageToFirebase(imageUri, { imageUrl ->
+            saveUserData(imageUrl)  // Once image is uploaded, save the user data with the image URL
+        }, {
+            // Handle failure in image upload
+        })
+    }
+    private fun saveUserData(imageUrl: String?) {
+        // Save user data to Firestore with or without image
+        val userData = mapOf(
+            "firstName" to edtFirstName.text.toString(),
+            "lastName" to edtLastName.text.toString(),
+            "phoneNumber" to firebaseAuth.currentUser?.phoneNumber.toString(),
+            "profileImage" to imageUrl  // Image URL or null if skipped
+        )
+        viewModel.saveNewUserToFirestore(userData)
+        sharedPreference.setAuthenticationStatus(true)
+        progressBar.visibility = View.GONE
+        (activity as MainActivity).showMainContent()
+        navController.popBackStack(R.id.phoneLoginFragment, true)
     }
 }

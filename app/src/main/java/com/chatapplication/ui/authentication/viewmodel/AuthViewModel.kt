@@ -1,8 +1,8 @@
 package com.chatapplication.ui.authentication.viewmodel
 
 import android.app.Activity
+import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,17 +12,18 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import java.util.UUID
 import java.util.concurrent.TimeUnit
 
 class AuthViewModel : ViewModel() {
 
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private val storage: FirebaseStorage = FirebaseStorage.getInstance()
     private val _verificationId = MutableLiveData<String>()
+    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     val verificationId: LiveData<String> = _verificationId
-
 
     // LiveData for verification status
     private val _verificationStatus = MutableLiveData<Boolean>()
@@ -99,15 +100,50 @@ class AuthViewModel : ViewModel() {
             }
     }
 
-    // Save new user to Firestore if they don't exist
-    fun saveNewUserToFirestore(userData: Map<String, Any>) {
-        val userId = firebaseAuth.currentUser?.uid ?: return
-        firestore.collection("users").document(userId).set(userData)
-            .addOnSuccessListener {
-                Log.d("AuthViewModel", "New user added to Firestore")
+    fun uploadImageToFirebase(
+        uri: Uri?,
+        onSuccess: (String) -> Unit,
+        onFailure: () -> Unit
+    ) {
+        if (uri == null) {
+            onFailure()
+            return
+        }
+
+        // Generate a unique file name for the image
+        val fileName = "profile_images/${UUID.randomUUID()}.jpg"
+        val storageRef = storage.reference.child(fileName)
+
+        // Upload the file to Firebase Storage
+        storageRef.putFile(uri)
+            .addOnSuccessListener { taskSnapshot ->
+                // Retrieve the download URL of the uploaded image
+                storageRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    onSuccess(downloadUri.toString())
+                }
             }
-            .addOnFailureListener { e ->
-                Log.e("AuthViewModel", "Error adding user to Firestore: ${e.message}")
+            .addOnFailureListener {
+                onFailure()
             }
     }
+
+
+    // Save new user to Firestore if they don't exist
+    fun saveNewUserToFirestore(userData: Map<String, Any?>) {
+
+        val userId = firebaseAuth.currentUser?.uid ?: return
+
+        // Save user data in Firestore with the user's UID as the document ID
+        firestore.collection("users")
+            .document(userId)
+            .set(userData)
+            .addOnSuccessListener {
+                // Data saved successfully, handle any additional actions here
+            }
+            .addOnFailureListener {
+                // Handle failure in saving data to Firestore
+            }
+    }
+
+
 }

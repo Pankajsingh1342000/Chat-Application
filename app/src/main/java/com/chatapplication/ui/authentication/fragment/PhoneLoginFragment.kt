@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -26,8 +27,8 @@ class PhoneLoginFragment : Fragment(), View.OnClickListener {
     private lateinit var btnContinue: Button
     private lateinit var countryCodePicker: CountryCodePicker
     private lateinit var progressBar: ProgressBar
-    private lateinit var blurBackground: View
     private lateinit var navController: NavController
+    private lateinit var btnBack: ImageView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +39,7 @@ class PhoneLoginFragment : Fragment(), View.OnClickListener {
         btnContinue = binding.btnContinue
         countryCodePicker = binding.countryCodePicker
         progressBar = binding.progressBar
-        blurBackground = binding.blurBackground
+        btnBack = binding.ivBackIcon
         navController = findNavController()
         return binding.root
     }
@@ -50,6 +51,7 @@ class PhoneLoginFragment : Fragment(), View.OnClickListener {
 
     private fun setListeners(){
         btnContinue.setOnClickListener(this)
+        btnBack.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -57,7 +59,6 @@ class PhoneLoginFragment : Fragment(), View.OnClickListener {
             btnContinue -> {
 
                 progressBar.visibility = View.VISIBLE
-                blurBackground.visibility = View.VISIBLE
                 Util.KeyboardHelper.hideKeyboard(requireActivity())
                 val phoneNumber = countryCodePicker.textView_selectedCountry.text.toString().trim() +
                         edtPhoneNumber.text.toString().trim()
@@ -70,19 +71,20 @@ class PhoneLoginFragment : Fragment(), View.OnClickListener {
                             val action = PhoneLoginFragmentDirections
                                 .actionPhoneLoginFragmentToVerifyFragment(verificationId)
                             progressBar.visibility = View.GONE
-                            blurBackground.visibility = View.GONE
                             navController.navigate(action)
                         } else {
                             Log.e("PhoneLoginFragment", "Verification ID is null")
                             progressBar.visibility = View.GONE
-                            blurBackground.visibility = View.GONE
                         }
                     }
                 } else {
                     progressBar.visibility = View.GONE
-                    blurBackground.visibility = View.GONE
                     Toast.makeText(requireContext(), "Enter valid phone number", Toast.LENGTH_SHORT).show()
                 }
+            }
+
+            btnBack -> {
+                navController.popBackStack()
             }
         }
     }

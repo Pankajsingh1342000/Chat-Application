@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.activity.addCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -25,6 +26,7 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
     private lateinit var edtFirstName: TextInputEditText
     private lateinit var edtLastName: TextInputEditText
     private lateinit var btnSave: Button
+    private lateinit var btnBack: ImageView
     private lateinit var navController: NavController
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -38,6 +40,7 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
         edtFirstName = binding.edtFirstName
         edtLastName = binding.edtLastName
         btnSave = binding.btnSave
+        btnBack = binding.ivBackIcon
         navController = findNavController()
         firebaseAuth = FirebaseAuth.getInstance()
         return binding.root
@@ -52,6 +55,7 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
 
     private fun setListeners() {
         btnSave.setOnClickListener(this)
+        btnBack.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -66,6 +70,9 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
                 sharedPreference.setAuthenticationStatus(true)
                 (activity as MainActivity).showMainContent()
                 navController.popBackStack(R.id.phoneLoginFragment, true)
+            }
+            btnBack -> {
+                navController.navigate(R.id.action_onboardingFragment_to_walkthroughFragment)
             }
         }
     }

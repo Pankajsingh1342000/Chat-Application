@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_phoneLoginFragment_to_verifyFragment"
             app:destination="@id/verifyFragment" />
+        <action
+            android:id="@+id/action_phoneLoginFragment_to_walkthroughFragment"
+            app:destination="@id/walkthroughFragment" />
     </fragment>
     <fragment
         android:id="@+id/verifyFragment"
@@ -34,6 +37,12 @@
         <action
             android:id="@+id/action_verifyFragment_to_onboardingFragment"
             app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_verifyFragment_to_walkthroughFragment"
+            app:destination="@id/walkthroughFragment" />
+        <action
+            android:id="@+id/action_verifyFragment_to_phoneLoginFragment"
+            app:destination="@id/phoneLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"

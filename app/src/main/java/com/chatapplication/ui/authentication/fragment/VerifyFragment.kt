@@ -8,6 +8,7 @@
     import android.view.View
     import android.view.ViewGroup
     import android.widget.Button
+    import android.widget.ImageView
     import android.widget.ProgressBar
     import android.widget.Toast
     import androidx.lifecycle.ViewModelProvider
@@ -33,8 +34,8 @@
         private lateinit var edtOtpDigit5: TextInputEditText
         private lateinit var edtOtpDigit6: TextInputEditText
         private lateinit var btnContinue: Button
+        private lateinit var btnBack: ImageView
         private lateinit var progressBar: ProgressBar
-        private lateinit var blurBackground: View
         private lateinit var navController: NavController
         private lateinit var verificationId: String
         private lateinit var otpFields: List<TextInputEditText>
@@ -54,7 +55,7 @@
             edtOtpDigit6 = binding.etOtpDigit6
             btnContinue = binding.btnContinue
             progressBar = binding.progressBar
-            blurBackground = binding.blurBackground
+            btnBack = binding.ivBackIcon
             navController = findNavController()
             val args = VerifyFragmentArgs.fromBundle(requireArguments())
             verificationId = args.verificationId
@@ -79,19 +80,18 @@
         }
         private fun setListeners(){
             btnContinue.setOnClickListener(this)
+            btnBack.setOnClickListener(this)
         }
 
         private fun existingUserOrNot() {
 
             viewModel.isExistingUser.observe(viewLifecycleOwner) {
                 if (it) {
-                    blurBackground.visibility = View.GONE
                     progressBar.visibility = View.GONE
                     sharedPreference.setAuthenticationStatus(true)
                     navController.popBackStack(R.id.phoneLoginFragment, true)
                     (activity as? MainActivity)?.showMainContent()
                 } else {
-                    blurBackground.visibility = View.GONE
                     progressBar.visibility = View.GONE
                     navController.navigate(R.id.action_verifyFragment_to_onboardingFragment)
                 }
@@ -153,8 +153,6 @@
         override fun onClick(v: View?) {
             when (v) {
                 btnContinue -> {
-                    blurBackground.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.VISIBLE
                     Util.KeyboardHelper.hideKeyboard(requireActivity())
                     val otpCode = edtOtpDigit1.text.toString().trim() +
                             edtOtpDigit2.text.toString().trim() +
@@ -163,15 +161,16 @@
                             edtOtpDigit5.text.toString().trim() +
                             edtOtpDigit6.text.toString().trim()
 
-                    if (otpCode.isNotEmpty() && verificationId.isNotEmpty()) {
-                        blurBackground.visibility = View.GONE
-                        progressBar.visibility = View.GONE
+                    if (otpCode.isNotEmpty() && verificationId.isNotEmpty() && otpCode.length == 6) {
+                        binding.progressBar.visibility = View.VISIBLE
                         viewModel.verifyOtp(verificationId, otpCode)
                     } else {
-                        blurBackground.visibility = View.GONE
                         progressBar.visibility = View.GONE
                         Toast.makeText(requireContext(), "Enter valid OTP", Toast.LENGTH_SHORT).show()
                     }
+                }
+                btnBack -> {
+                    navController.popBackStack()
                 }
             }
         }

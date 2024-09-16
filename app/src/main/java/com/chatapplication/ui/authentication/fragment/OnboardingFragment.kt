@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.activity.addCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -37,11 +39,8 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
     private lateinit var navController: NavController
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
+    private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private var selectedImageUri: Uri? = null
-
-    companion object {
-        const val IMAGE_PICK_REQUEST_CODE = 1001
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +57,14 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
         progressBar = binding.progressBar
         navController = findNavController()
         firebaseAuth = FirebaseAuth.getInstance()
+        imagePickerLauncher = this.registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
+                selectedImageUri = result.data?.data
+                binding.ivProfileImage.setImageURI(selectedImageUri)  // Display selected image
+            }
+        }
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,14 +72,6 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
         setListeners()
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             navController.navigate(R.id.action_onboardingFragment_to_walkthroughFragment)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == IMAGE_PICK_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            selectedImageUri = data?.data
-            binding.ivProfileImage.setImageURI(selectedImageUri)  // Display selected image
         }
     }
 
@@ -95,7 +94,7 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
             }
             ivProfileImage -> {
                 val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(intent, IMAGE_PICK_REQUEST_CODE)
+                imagePickerLauncher.launch(intent)
             }
             btnBack -> {
                 navController.navigate(R.id.action_onboardingFragment_to_walkthroughFragment)

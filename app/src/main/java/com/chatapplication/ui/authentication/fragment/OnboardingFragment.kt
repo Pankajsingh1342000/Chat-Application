@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,6 +22,8 @@ import androidx.navigation.fragment.findNavController
 import com.chatapplication.MainActivity
 import com.chatapplication.R
 import com.chatapplication.databinding.FragmentOnboardingBinding
+import com.chatapplication.permission_manager.PermissionManager
+import com.chatapplication.permission_manager.Permissions
 import com.chatapplication.ui.authentication.viewmodel.AuthViewModel
 import com.chatapplication.util.SharedPreferenceManager
 import com.google.android.material.imageview.ShapeableImageView
@@ -39,6 +42,7 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
     private lateinit var navController: NavController
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
+    private lateinit var permissionManager : PermissionManager
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private var selectedImageUri: Uri? = null
 
@@ -56,6 +60,7 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
         ivProfileImage = binding.ivProfileImage
         progressBar = binding.progressBar
         navController = findNavController()
+        permissionManager = PermissionManager.from(this)
         firebaseAuth = FirebaseAuth.getInstance()
         imagePickerLauncher = this.registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -93,8 +98,21 @@ class OnboardingFragment : Fragment(), View.OnClickListener {
                 }
             }
             ivProfileImage -> {
-                val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                imagePickerLauncher.launch(intent)
+                permissionManager
+                    .request(Permissions.ImagePick)
+                    .rationale(
+                        title = "Permission Required",
+                        description = "This app needs permission to access gallery"
+                    )
+                    .permissionPermanentlyDeniedContent(description = "You have permanently denied the permission. Please enable it from settings")
+                    .checkAndRequestPermission {
+                        if (it) {
+                            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                            imagePickerLauncher.launch(intent)
+                        } else {
+                            Toast.makeText(this.context, "Permission denied", Toast.LENGTH_SHORT).show()
+                        }
+                    }
             }
             btnBack -> {
                 navController.navigate(R.id.action_onboardingFragment_to_walkthroughFragment)

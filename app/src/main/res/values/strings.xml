@@ -37,4 +37,8 @@
     <string name="camera_icon">Camera Icon</string>
     <string name="menu_icon">menu icon</string>
     <string name="search">Search</string>
+    <string name="name">Name</string>
+    <string name="message">Message</string>
+    <string name="_111">111</string>
+    <string name="_13_04_2000">13/04/2000</string>
 </resources>

@@ -19,6 +19,7 @@
     <dimen name="body02">@dimen/_11ssp</dimen>
     <dimen name="size_18">@dimen/_14ssp</dimen>
     <dimen name="size_16">@dimen/_12ssp</dimen>
+    <dimen name="time_stamp">@dimen/_10ssp</dimen>"
 
     //padding
     <dimen name="padding_12">@dimen/_10sdp</dimen>

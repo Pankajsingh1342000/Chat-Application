@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.chatapplication.MainActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.chatapplication.databinding.FragmentChatsBinding
+import com.chatapplication.ui.feature.chat.adapter.ChatsListAdapter
+import com.chatapplication.ui.feature.chat.model.ChatList
 import com.chatapplication.util.SharedPreferenceManager
 
 class ChatsFragment : Fragment() {
@@ -25,6 +27,23 @@ class ChatsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    }
 
+        // Create a list of 10 dummy chat data
+        val dummyChats = List(10) { index ->
+            ChatList(
+                name = "Person $index",
+                message = "This is a dummy message for person $index.",
+                timeStamp = "10:0$index AM",
+                unreadMessageCount = index
+            )
+        }
+
+        // Set up the RecyclerView
+        binding.rvChats.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = ChatsListAdapter(dummyChats)
+
+
+        }
+    }
 }

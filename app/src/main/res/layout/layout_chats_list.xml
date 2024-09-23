@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,17 +9,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingVertical="@dimen/_8sdp">
+        android:paddingVertical="@dimen/_10sdp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivProfile"
-            android:layout_width="@dimen/_47sdp"
-            android:layout_height="@dimen/_47sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:src="@drawable/ic_profile_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:shapeAppearanceOverlay="@style/RoundImageView" />
 
         <LinearLayout
@@ -32,7 +29,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivProfile"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             android:layout_marginStart="@dimen/_8sdp">
 
             <LinearLayout
@@ -50,43 +46,56 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Hello"
-                    android:textSize="@dimen/heading02" />
+                    android:textStyle="bold"
+                    android:text="@string/name"
+                    android:textSize="@dimen/subheading01" />
 
                 <TextView
                     android:id="@+id/tvTimeStamp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="13/04/2000"
+                    android:text="@string/_13_04_2000"
                     android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/time_stamp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/llMessageAndChats"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tvMessage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Message"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="@string/message"
                     android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/subheading01" />
+                    android:textSize="@dimen/subheading02" />
 
                 <TextView
                     android:id="@+id/tvChats"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="1"
-                    android:textSize="@dimen/_12sdp" />
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_2sdp"
+                    android:background="@drawable/bg_number_of_chat"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.10"
+                    android:textColor="@color/number_of_chats_text_color"
+                    android:minWidth="@dimen/_20sdp"
+                    android:minHeight="@dimen/_20sdp"
+                    android:text="@string/_111"
+                    android:maxLines="1"
+                    android:maxLength="3"
+                    android:textSize="@dimen/time_stamp" />
 
             </LinearLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

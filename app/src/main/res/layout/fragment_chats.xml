@@ -84,22 +84,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSearchBar"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieSearchBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/_12sdp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tieSearchBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_search_edit_text"
-                        android:textSize="@dimen/_14ssp"
-                        android:hint="@string/search" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
+                    android:background="@drawable/bg_search_edit_text"
+                    android:textSize="@dimen/_14ssp"
+                    android:hint="@string/search" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvChats"
@@ -109,7 +107,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tilSearchBar"
+                    app:layout_constraintTop_toBottomOf="@id/tieSearchBar"
                     tools:listitem="@layout/layout_chats_list">
 
                 </androidx.recyclerview.widget.RecyclerView>

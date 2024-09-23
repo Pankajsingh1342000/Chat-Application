@@ -25,11 +25,6 @@ class ChatsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btnChatLogout.setOnClickListener{
-            sharedPreference.logout()
-            (activity as? MainActivity)?.showAuthContent()
-        }
     }
 
 }

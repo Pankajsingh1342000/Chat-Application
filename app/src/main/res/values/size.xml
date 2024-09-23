@@ -22,8 +22,9 @@
 
     //padding
     <dimen name="padding_12">@dimen/_10sdp</dimen>
-    <dimen name="screen_padding_horizontal">@dimen/_19sdp</dimen>
+    <dimen name="screen_padding_horizontal">@dimen/_10sdp</dimen>
     <dimen name="screen_padding_vertical">@dimen/_16sdp</dimen>
+    <dimen name="header_padding_vertical">@dimen/_8sdp</dimen>
 
 
 

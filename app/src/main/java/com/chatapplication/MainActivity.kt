@@ -15,12 +15,14 @@ import com.chatapplication.ui.feature.chat.fragment.ChatsHostFragment
 import com.chatapplication.ui.feature.update.fragment.UpdatesHostFragment
 import com.chatapplication.util.SharedPreferenceManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var viewPager: ViewPager2
+    private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var authNavHostFragment: FragmentContainerView
     private lateinit var sharedPreferences: SharedPreferenceManager
 
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
+        initViews()
 
         sharedPreferences = SharedPreferenceManager(this)
 
@@ -42,23 +45,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showAuthContent() {
-        findViewById<ViewPager2>(R.id.view_pager).visibility = View.GONE
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.GONE
-        findViewById<FragmentContainerView>(R.id.auth_nav_host_fragment).visibility = View.VISIBLE
+        viewPager.visibility = View.GONE
+        bottomNavigationView.visibility = View.GONE
+        floatingActionButton.visibility = View.GONE
+        authNavHostFragment.visibility = View.VISIBLE
         setUpMainContent()
 
     }
 
     fun showMainContent() {
-        findViewById<FragmentContainerView>(R.id.auth_nav_host_fragment).visibility = View.GONE
-        findViewById<ViewPager2>(R.id.view_pager).visibility = View.VISIBLE
-        findViewById<BottomNavigationView>(R.id.bottom_navigation).visibility = View.VISIBLE
-
+        authNavHostFragment.visibility = View.GONE
+        viewPager.visibility = View.VISIBLE
+        bottomNavigationView.visibility = View.VISIBLE
+        floatingActionButton.visibility = View.VISIBLE
         setUpMainContent()
     }
 
     private fun setUpMainContent() {
-        initViews()
         setupWindowInsets()
         setupViewPager()
         setupBottomNavigation()
@@ -68,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView = findViewById(R.id.bottom_navigation)
         viewPager = findViewById(R.id.view_pager)
         authNavHostFragment = findViewById(R.id.auth_nav_host_fragment)
+        floatingActionButton = findViewById(R.id.fab_add)
     }
 
     private fun setupWindowInsets() {

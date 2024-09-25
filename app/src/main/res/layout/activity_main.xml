@@ -56,6 +56,7 @@
             android:src="@drawable/ic_fab_chat_icon"
             android:visibility="gone"
             app:fabCustomSize="@dimen/_50sdp"
+            app:maxImageSize="@dimen/_22sdp"
             android:layout_margin="@dimen/_24sdp"/>
 
 

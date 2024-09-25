@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.chatapplication.ui.feature.call.fragment.CallsHostFragment
 import com.chatapplication.ui.feature.chat.fragment.ChatsHostFragment
 import com.chatapplication.ui.feature.update.fragment.UpdatesHostFragment
+import com.chatapplication.util.FabClickListener
 import com.chatapplication.util.SharedPreferenceManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var floatingActionButton: FloatingActionButton
     private lateinit var authNavHostFragment: FragmentContainerView
     private lateinit var sharedPreferences: SharedPreferenceManager
+    private var fabClickListener: FabClickListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         initViews()
 
         sharedPreferences = SharedPreferenceManager(this)
+
+        floatingActionButton.setOnClickListener {
+            fabClickListener?.onFabClick()
+        }
 
         if(sharedPreferences.isAuthenticated()){
             showMainContent()
@@ -60,6 +66,11 @@ class MainActivity : AppCompatActivity() {
         floatingActionButton.visibility = View.VISIBLE
         setUpMainContent()
     }
+
+    fun setFabClickListener(listener: FabClickListener?) {
+        fabClickListener = listener
+    }
+
 
     private fun setUpMainContent() {
         setupWindowInsets()
@@ -109,6 +120,26 @@ class MainActivity : AppCompatActivity() {
                     1 -> R.id.updatesFragment
                     2 -> R.id.callsFragment
                     else -> R.id.chatsFragment
+                }
+
+                when (position) {
+                    0 -> floatingActionButton.apply{
+                        visibility = View.VISIBLE
+                        setImageResource(R.drawable.ic_fab_chat_icon)
+                    }
+                    1 -> floatingActionButton.apply{
+                        visibility = View.VISIBLE
+                        setImageResource(R.drawable.ic_fab_camera_icon)
+                    }
+                    2 -> floatingActionButton.apply{
+                        visibility = View.GONE
+                    }
+                    else -> floatingActionButton.visibility = View.GONE
+                }
+
+                val fragment = supportFragmentManager.findFragmentByTag("f${viewPager.currentItem}")
+                (fragment as? FabClickListener)?.let {
+                    setFabClickListener(it)
                 }
             }
         })

@@ -53,8 +53,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            android:src="@drawable/ic_add_icon"
+            android:src="@drawable/ic_fab_chat_icon"
             android:visibility="gone"
+            app:fabCustomSize="@dimen/_50sdp"
             android:layout_margin="@dimen/_24sdp"/>
 
 

@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:textStyle="bold"
                     android:text="@string/name"
-                    android:textSize="@dimen/subheading01" />
+                    android:textSize="@dimen/size_18" />
 
                 <TextView
                     android:id="@+id/tvTimeStamp"
@@ -74,7 +74,7 @@
                     android:gravity="center_vertical"
                     android:text="@string/message"
                     android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/subheading02" />
+                    android:textSize="@dimen/size_16" />
 
                 <TextView
                     android:id="@+id/tvChats"
@@ -84,7 +84,6 @@
                     android:background="@drawable/bg_number_of_chat"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:letterSpacing="-0.10"
                     android:textColor="@color/number_of_chats_text_color"
                     android:minWidth="@dimen/_20sdp"
                     android:minHeight="@dimen/_20sdp"

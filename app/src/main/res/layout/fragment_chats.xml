@@ -27,8 +27,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/layoutIcons"
                 android:text="@string/chats"
-                android:textSize="@dimen/_24ssp"
                 android:textStyle="bold"
+                android:textSize="@dimen/_22ssp"
                 android:gravity="start|center_vertical"
                 />
 

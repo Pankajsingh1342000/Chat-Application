@@ -8,22 +8,22 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chatapplication.MainActivity
-import com.chatapplication.databinding.FragmentChatsBinding
+import com.chatapplication.databinding.FragmentChatListBinding
 import com.chatapplication.ui.feature.chat.adapter.ChatsListAdapter
 import com.chatapplication.ui.feature.chat.model.ChatList
 import com.chatapplication.util.FabClickListener
 import com.chatapplication.util.SharedPreferenceManager
 
-class ChatsFragment : Fragment(), FabClickListener {
+class ChatListFragment : Fragment(), FabClickListener {
 
-    private lateinit var binding: FragmentChatsBinding
+    private lateinit var binding: FragmentChatListBinding
     private lateinit var sharedPreference: SharedPreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentChatsBinding.inflate(layoutInflater)
+        binding = FragmentChatListBinding.inflate(layoutInflater)
         sharedPreference = SharedPreferenceManager(requireContext())
         return binding.root
     }

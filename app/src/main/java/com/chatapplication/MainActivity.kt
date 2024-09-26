@@ -116,10 +116,10 @@ class MainActivity : AppCompatActivity() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 bottomNavigationView.selectedItemId = when (position) {
-                    0 -> R.id.chatsFragment
+                    0 -> R.id.chatListFragment
                     1 -> R.id.updatesFragment
                     2 -> R.id.callsFragment
-                    else -> R.id.chatsFragment
+                    else -> R.id.chatListFragment
                 }
 
                 when (position) {
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.chatsFragment -> viewPager.setCurrentItem(0, true)
+                R.id.chatListFragment -> viewPager.setCurrentItem(0, true)
                 R.id.updatesFragment -> viewPager.setCurrentItem(1, true)
                 R.id.callsFragment -> viewPager.setCurrentItem(2, true)
             }

@@ -44,4 +44,6 @@
     <string name="add_button">Add button</string>
     <string name="user_name">NAME</string>
     <string name="text_field_hint_message">Message</string>
+    <string name="button_mic">button mic</string>
+    <string name="send_button">send button</string>
 </resources>

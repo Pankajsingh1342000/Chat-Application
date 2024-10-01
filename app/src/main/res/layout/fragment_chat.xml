@@ -110,7 +110,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/header"
-            app:layout_constraintBottom_toTopOf="@id/layout_text_field">
+            app:layout_constraintBottom_toTopOf="@id/layout_text_field"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -118,7 +120,9 @@
             android:id="@+id/layout_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/bottom_text_field_padding_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_message"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -194,7 +198,8 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/button_mic"
                 android:src="@drawable/ic_mic_icon"
-                app:borderWidth="0dp"
+                app:shapeAppearance="oval"
+                app:elevation="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -205,8 +210,9 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/send_button"
                 android:src="@drawable/ic_send_icon"
+                app:shapeAppearance="oval"
                 android:visibility="gone"
-                app:borderWidth="0dp"
+                app:elevation="0dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

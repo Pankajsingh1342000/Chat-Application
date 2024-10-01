@@ -26,6 +26,7 @@
     <dimen name="screen_padding_horizontal">@dimen/_10sdp</dimen>
     <dimen name="screen_padding_vertical">@dimen/_16sdp</dimen>
     <dimen name="header_padding_vertical">@dimen/_8sdp</dimen>
+    <dimen name="bottom_text_field_padding_vertical">@dimen/_4sdp</dimen>
 
 
 

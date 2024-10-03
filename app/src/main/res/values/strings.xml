@@ -46,4 +46,8 @@
     <string name="text_field_hint_message">Message</string>
     <string name="button_mic">button mic</string>
     <string name="send_button">send button</string>
+    <string name="attach_button">Attach Button</string>
+    <string name="camera_button">Camera Button</string>
+    <string name="emoji_button">Emoji Button</string>
+    <string name="back_button_content">Back Button</string>
 </resources>

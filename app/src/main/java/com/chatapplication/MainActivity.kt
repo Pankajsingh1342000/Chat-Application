@@ -67,6 +67,15 @@ class MainActivity : AppCompatActivity() {
         setUpMainContent()
     }
 
+    fun hideMainContent() {
+        authNavHostFragment.visibility = View.GONE
+        bottomNavigationView.visibility = View.GONE
+        floatingActionButton.visibility = View.GONE
+    }
+    fun setViewPagerSwipeEnabled(isEnabled: Boolean) {
+        viewPager.isUserInputEnabled = isEnabled
+    }
+
     fun setFabClickListener(listener: FabClickListener?) {
         fabClickListener = listener
     }

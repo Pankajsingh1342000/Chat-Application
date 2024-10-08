@@ -41,7 +41,6 @@ class ChatFragment : Fragment(), View.OnClickListener {
     private lateinit var fabMic: FloatingActionButton
     private lateinit var fabSend: FloatingActionButton
     private lateinit var navController: NavController
-//    private var keyboardMargin: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,24 +55,22 @@ class ChatFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        keyboardMargin = resources.getDimensionPixelSize(R.dimen.keyboard_margin)
         (activity as? MainActivity)?.hideMainContent()
         handleBackPress()
         setListeners()
-//        observeKeyboardVisibility()
-        val dummyChats = List(10) { index ->
-            ChatList(
-                name = "Person ${index+1}",
-                message = "This is a dummy message for person ${index+1}.",
-                timeStamp = "10:0${index+1} AM",
-                unreadMessageCount = index+1
-            )
-        }
-
-        binding.rvMessage.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = ChatsListAdapter(dummyChats)
-        }
+//        val dummyChats = List(10) { index ->
+//            ChatList(
+//                name = "Person ${index+1}",
+//                message = "This is a dummy message for person ${index+1}.",
+//                timeStamp = "10:0${index+1} AM",
+//                unreadMessageCount = index+1
+//            )
+//        }
+//
+//        binding.rvMessage.apply {
+//            layoutManager = LinearLayoutManager(requireContext())
+//            adapter = ChatsListAdapter(dummyChats)
+//        }
     }
 
     override fun onResume() {
@@ -86,21 +83,25 @@ class ChatFragment : Fragment(), View.OnClickListener {
         super.onDestroy()
         (activity as? MainActivity)?.setViewPagerSwipeEnabled(true)
     }
-    private fun setupWindowInsets() {
-        val mainLayout = binding.layoutChat
-        ViewCompat.setOnApplyWindowInsetsListener(mainLayout) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val keyboardInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
 
-            view.setPadding(
-                resources.getDimensionPixelSize(R.dimen.screen_padding_horizontal),
-                resources.getDimensionPixelSize(R.dimen.header_padding_vertical),
-                resources.getDimensionPixelSize(R.dimen.screen_padding_horizontal),
-                systemBars.bottom + keyboardInsets.bottom
-            )
+    private fun setupWindowInsets() {
+        val textFieldLayout = binding.layoutTextField
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val isKeyboardVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+
+            val layoutParams = textFieldLayout.layoutParams as ViewGroup.MarginLayoutParams
+            layoutParams.bottomMargin = if (isKeyboardVisible) {
+                insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
+            } else {
+                systemBars.bottom
+            }
+            textFieldLayout.layoutParams = layoutParams
+
             insets
         }
     }
+
 
     private fun setListeners() {
         btnBack.setOnClickListener(this)
@@ -115,24 +116,6 @@ class ChatFragment : Fragment(), View.OnClickListener {
             }
         })
     }
-
-//    private fun observeKeyboardVisibility() {
-//        val rootView = binding.root
-//        rootView.viewTreeObserver.addOnGlobalLayoutListener {
-//            val rect = Rect()
-//            rootView.getWindowVisibleDisplayFrame(rect)
-//            val screenHeight = rootView.rootView.height
-//            val keypadHeight = screenHeight - rect.bottom
-//
-//            if (keypadHeight > screenHeight * 0.15) {
-//                // Keyboard is visible
-//                binding.layoutTextField.setPadding(0, 0, 0, keypadHeight - keyboardMargin)
-//            } else {
-//                // Keyboard is hidden
-//                binding.layoutTextField.setPadding(0, 0, 0, 0)
-//            }
-//        }
-//    }
 
     override fun onClick(v: View?) {
         when (v) {

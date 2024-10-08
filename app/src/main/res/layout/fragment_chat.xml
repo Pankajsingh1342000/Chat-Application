@@ -72,7 +72,7 @@
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <ImageView
-                        android:id="@+id/ic_video_call"
+                        android:id="@+id/iv_video_call"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:contentDescription="@string/camera_icon"
@@ -80,32 +80,32 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/ic_camera"
+                        app:layout_constraintEnd_toStartOf="@id/iv_camera"
                         android:layout_marginEnd="@dimen/_8sdp"
                         />
 
                     <ImageView
-                        android:id="@+id/ic_camera"
+                        android:id="@+id/iv_camera"
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:contentDescription="@string/camera_icon"
                         android:src="@drawable/ic_call_icon"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/ic_video_call"
-                        app:layout_constraintEnd_toStartOf="@id/ic_menu"
+                        app:layout_constraintStart_toEndOf="@id/iv_video_call"
+                        app:layout_constraintEnd_toStartOf="@id/iv_menu"
                         android:layout_marginHorizontal="@dimen/_6sdp"
                         />
 
                     <ImageView
-                        android:id="@+id/ic_menu"
+                        android:id="@+id/iv_menu"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:contentDescription="@string/menu_icon"
                         android:src="@drawable/ic_menu_icon"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/ic_camera"
+                        app:layout_constraintStart_toEndOf="@id/iv_camera"
                         app:layout_constraintEnd_toEndOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

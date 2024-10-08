@@ -2,6 +2,8 @@ package com.chatapplication.ui.feature.chat.fragment
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -16,6 +19,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.ChangeBounds
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
 import com.chatapplication.MainActivity
 import com.chatapplication.R
 import com.chatapplication.databinding.FragmentChatBinding
@@ -24,9 +30,10 @@ import com.chatapplication.ui.feature.chat.model.ChatList
 import com.chatapplication.util.Util.KeyboardHelper.hideKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.textfield.TextInputEditText
 
 
-class ChatFragment : Fragment(), View.OnClickListener {
+class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
     private lateinit var binding: FragmentChatBinding
     private lateinit var btnBack: ImageView
     private lateinit var profileImage: ShapeableImageView
@@ -38,15 +45,32 @@ class ChatFragment : Fragment(), View.OnClickListener {
     private lateinit var ibEmoji: ImageButton
     private lateinit var ibAttach: ImageButton
     private lateinit var ibCamera: ImageButton
+    private lateinit var edtMessage: TextInputEditText
     private lateinit var fabMic: FloatingActionButton
     private lateinit var fabSend: FloatingActionButton
     private lateinit var navController: NavController
+    private lateinit var clRootContainer: ConstraintLayout
+    private lateinit var clRootEditTextFieldContainer: ConstraintLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentChatBinding.inflate(layoutInflater)
         btnBack = binding.ivBack
+        profileImage = binding.ivProfile
+        name = binding.tvName
+        videoCall = binding.ivVideoCall
+        call = binding.ivVideoCall
+        menu = binding.ivMenu
+        rvMessage = binding.rvMessage
+        ibEmoji = binding.ibEmoji
+        ibAttach = binding.ibAttachment
+        ibCamera = binding.ibCamera
+        edtMessage = binding.edtMessage
+        fabMic = binding.fabMic
+        fabSend = binding.fabSend
+        clRootContainer = binding.layoutChat
+        clRootEditTextFieldContainer = binding.layoutTextField
         navController = findNavController()
         setupWindowInsets()
         (activity as? MainActivity)?.setViewPagerSwipeEnabled(false)
@@ -105,6 +129,7 @@ class ChatFragment : Fragment(), View.OnClickListener {
 
     private fun setListeners() {
         btnBack.setOnClickListener(this)
+        edtMessage.addTextChangedListener(this)
     }
 
     private fun handleBackPress() {
@@ -125,5 +150,31 @@ class ChatFragment : Fragment(), View.OnClickListener {
                 (activity as? MainActivity)?.showMainContent()
             }
         }
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//        if(s?.isNotEmpty() == true){
+//            if(s.toString().trim().isNotEmpty() && ibCamera.visibility == View.VISIBLE) {
+//                TransitionManager.beginDelayedTransition(clRootContainer, ChangeBounds())
+//                ibCamera.visibility = View.GONE
+//                TransitionManager.beginDelayedTransition(clRootContainer, Fade())
+//                fabSend.visibility = View.VISIBLE
+//                fabMic.visibility = View.INVISIBLE
+//            }
+//        }
+//        else{
+//            TransitionManager.beginDelayedTransition(clRootContainer, ChangeBounds())
+//            ibCamera.visibility =View.VISIBLE
+//            TransitionManager.beginDelayedTransition(clRootContainer, Fade())
+//            fabSend.visibility = View.INVISIBLE
+//            fabMic.visibility = View.VISIBLE
+//        }
+    }
+
+    override fun afterTextChanged(s: Editable?) {
     }
 }

@@ -181,6 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
+                        android:paddingHorizontal="@dimen/_10sdp"
                         android:contentDescription="@string/attach_button"
                         android:src="@drawable/ic_attachment"
                         app:layout_constraintTop_toTopOf="parent"

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.ChangeBounds
 import androidx.transition.Fade
 import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.chatapplication.MainActivity
 import com.chatapplication.R
 import com.chatapplication.databinding.FragmentChatBinding
@@ -49,7 +50,6 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
     private lateinit var fabMic: FloatingActionButton
     private lateinit var fabSend: FloatingActionButton
     private lateinit var navController: NavController
-    private lateinit var clRootContainer: ConstraintLayout
     private lateinit var clRootEditTextFieldContainer: ConstraintLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +69,6 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
         edtMessage = binding.edtMessage
         fabMic = binding.fabMic
         fabSend = binding.fabSend
-        clRootContainer = binding.layoutChat
         clRootEditTextFieldContainer = binding.layoutTextField
         navController = findNavController()
         setupWindowInsets()
@@ -157,22 +156,32 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
     }
 
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//        if(s?.isNotEmpty() == true){
-//            if(s.toString().trim().isNotEmpty() && ibCamera.visibility == View.VISIBLE) {
-//                TransitionManager.beginDelayedTransition(clRootContainer, ChangeBounds())
-//                ibCamera.visibility = View.GONE
-//                TransitionManager.beginDelayedTransition(clRootContainer, Fade())
-//                fabSend.visibility = View.VISIBLE
-//                fabMic.visibility = View.INVISIBLE
-//            }
-//        }
-//        else{
-//            TransitionManager.beginDelayedTransition(clRootContainer, ChangeBounds())
-//            ibCamera.visibility =View.VISIBLE
-//            TransitionManager.beginDelayedTransition(clRootContainer, Fade())
-//            fabSend.visibility = View.INVISIBLE
-//            fabMic.visibility = View.VISIBLE
-//        }
+        if(s?.isNotEmpty() == true){
+            if(s.toString().trim().isNotEmpty() && ibCamera.visibility == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(clRootEditTextFieldContainer, ChangeBounds())
+                ibCamera.visibility = View.GONE
+                TransitionManager.beginDelayedTransition(clRootEditTextFieldContainer, Fade())
+                fabSend.visibility = View.VISIBLE
+                fabMic.visibility = View.INVISIBLE
+            }
+        }
+        else{
+
+            clRootEditTextFieldContainer.post {
+
+                val transitionSet = TransitionSet()
+                    .addTransition(ChangeBounds())
+                    .addTransition(Fade())
+                    .setDuration(200)
+
+                TransitionManager.beginDelayedTransition(clRootEditTextFieldContainer, transitionSet)
+
+                ibCamera.visibility = View.VISIBLE
+                fabSend.visibility = View.INVISIBLE
+                fabMic.visibility = View.VISIBLE
+            }
+
+        }
     }
 
     override fun afterTextChanged(s: Editable?) {

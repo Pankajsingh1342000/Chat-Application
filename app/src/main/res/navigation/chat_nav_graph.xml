@@ -17,5 +17,17 @@
         android:id="@+id/chatFragment"
         android:name="com.chatapplication.ui.feature.chat.fragment.ChatFragment"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_chat">
+        <argument
+            android:name="chatId"
+            app:argType="string" />
+        <argument
+            android:name="contactName"
+            app:argType="string"
+            app:nullable="true"/>
+        <argument
+            android:name="contactPhoneNumber"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

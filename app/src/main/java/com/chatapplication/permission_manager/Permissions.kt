@@ -1,6 +1,7 @@
 package com.chatapplication.permission_manager
 
 import android.Manifest.permission.CAMERA
+import android.Manifest.permission.READ_CONTACTS
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.READ_MEDIA_AUDIO
 import android.Manifest.permission.READ_MEDIA_IMAGES
@@ -14,7 +15,7 @@ sealed class Permissions(vararg val permissions: String) {
 //    object Camera : TlmPemrissions(CAMERA)
     // Bundled permissions
     data object ImagePick : Permissions(*getImagePickPermissions())
-    data object VidPick : Permissions(*getImagePickPermissions())
+    data object VidPick : Permissions(*getVidPick())
     data object ImgVidCamPerm : Permissions(*getImgVidCamPermission())
     data object ImgVidAudioPerm : Permissions(*getImgVidAudioPermission())
     data object ImgCamPerm : Permissions(*getImgCamPermission())
@@ -22,6 +23,8 @@ sealed class Permissions(vararg val permissions: String) {
     data object ImgVidPerm : Permissions(*getImgVidPermission())
     data object AudioPickPerm : Permissions(*getAudioPermission())
     data object GoLivePerm : Permissions(*getImgAudVidCamPermission())
+
+    data object ContactsPerm : Permissions(*getContactsPickPermissions())
 
     // Grouped permissions
 //    object Location : TlmPemrissions(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
@@ -124,6 +127,19 @@ sealed class Permissions(vararg val permissions: String) {
         private fun getVidPick(): Array<String> {
             return if (PermissionManager.sdkEqOrAbove33()) {
                 arrayOf(READ_MEDIA_VIDEO)
+            } else if (PermissionManager.sdkEqOrAbove29()) {
+                arrayOf(READ_EXTERNAL_STORAGE)
+            } else {
+                arrayOf(
+                    READ_EXTERNAL_STORAGE,
+                    WRITE_EXTERNAL_STORAGE
+                )
+            }
+        }
+
+        private fun getContactsPickPermissions(): Array<String> {
+            return if (PermissionManager.sdkEqOrAbove33()) {
+                arrayOf(READ_CONTACTS)
             } else if (PermissionManager.sdkEqOrAbove29()) {
                 arrayOf(READ_EXTERNAL_STORAGE)
             } else {

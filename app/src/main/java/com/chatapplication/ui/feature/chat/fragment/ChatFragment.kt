@@ -1,6 +1,5 @@
 package com.chatapplication.ui.feature.chat.fragment
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,10 +24,9 @@ import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
 import com.chatapplication.MainActivity
-import com.chatapplication.R
 import com.chatapplication.databinding.FragmentChatBinding
-import com.chatapplication.ui.feature.chat.adapter.ChatsListAdapter
-import com.chatapplication.ui.feature.chat.model.ChatList
+import com.chatapplication.ui.feature.chat.adapter.ChatMessagesAdapter
+import com.chatapplication.ui.feature.chat.viewmodel.ChatViewModel
 import com.chatapplication.util.Util.KeyboardHelper.hideKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
@@ -51,6 +50,9 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
     private lateinit var fabSend: FloatingActionButton
     private lateinit var navController: NavController
     private lateinit var clRootEditTextFieldContainer: ConstraintLayout
+    private lateinit var chatId: String
+    private lateinit var adapter: ChatMessagesAdapter
+    private val chatViewModel: ChatViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -81,19 +83,54 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
         (activity as? MainActivity)?.hideMainContent()
         handleBackPress()
         setListeners()
-//        val dummyChats = List(10) { index ->
-//            ChatList(
-//                name = "Person ${index+1}",
-//                message = "This is a dummy message for person ${index+1}.",
-//                timeStamp = "10:0${index+1} AM",
-//                unreadMessageCount = index+1
-//            )
-//        }
-//
-//        binding.rvMessage.apply {
-//            layoutManager = LinearLayoutManager(requireContext())
-//            adapter = ChatsListAdapter(dummyChats)
-//        }
+        val args = ChatFragmentArgs.fromBundle(requireArguments())
+        chatId = args.chatId
+
+        // If chatId is empty, it's a new chat (add contact flow)
+        if(chatId.isEmpty()){
+            val contactName = args.contactName
+            val contactPhoneNumber = args.contactPhoneNumber
+
+            // Create a new chat using the contact's details and generate a unique chatId
+            chatId = createNewChat(contactName, contactPhoneNumber)
+        }
+
+        // Setup RecyclerView for messages
+        adapter = ChatMessagesAdapter()
+        rvMessage.layoutManager = LinearLayoutManager(requireContext())
+        rvMessage.adapter = adapter
+
+        // Fetch messages and observe changes
+        chatViewModel.fetchMessages(chatId)
+        chatViewModel.messages.observe(viewLifecycleOwner) {messages ->
+            adapter.submitList(messages)
+        }
+
+        // Send message on button click
+        fabSend.setOnClickListener {
+            val message = edtMessage.text.toString().trim()
+            if (message.isNotEmpty()) {
+                chatViewModel.sendMessage(chatId, message)
+                edtMessage.text?.clear()
+            }
+        }
+    }
+
+    private fun createNewChat(contactName: String?, contactPhoneNumber: String?): String {
+        // Generate a unique chatId (e.g., using the current user's UID and the contact's phone number)
+        val currentUserId = chatViewModel.getCurrentUserId()  // Fetch current user ID
+        val chatId = "$currentUserId-$contactPhoneNumber"
+
+        // Add chat details to Firestore
+        val chatData = hashMapOf(
+            "participants" to listOf(currentUserId, contactPhoneNumber),
+            "name" to contactName,
+            "lastMessage" to "",
+            "timeStamp" to System.currentTimeMillis()
+        )
+        chatViewModel.addNewChat(chatId, chatData)
+
+        return chatId
     }
 
     override fun onResume() {

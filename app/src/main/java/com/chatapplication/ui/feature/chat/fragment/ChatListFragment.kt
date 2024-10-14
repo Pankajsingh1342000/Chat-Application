@@ -20,6 +20,8 @@ import com.chatapplication.ui.feature.chat.adapter.ChatsListAdapter
 import com.chatapplication.ui.feature.chat.viewmodel.ChatListViewModel
 import com.chatapplication.util.FabClickListener
 import com.chatapplication.util.SharedPreferenceManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ChatListFragment : Fragment(), FabClickListener {
 
@@ -29,6 +31,8 @@ class ChatListFragment : Fragment(), FabClickListener {
     private lateinit var permissionManager : PermissionManager
     private lateinit var pickContact : ActivityResultLauncher<Void?>
     private val chatListViewModel: ChatListViewModel by viewModels()
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val currentUserUid: String? = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,17 +48,20 @@ class ChatListFragment : Fragment(), FabClickListener {
         (activity as? MainActivity)?.setFabClickListener(this)
         permissionManager = PermissionManager.from(this)
         pickContact = this.registerForActivityResult(ActivityResultContracts.PickContact()) { uri ->
-            uri?.let { fetchContactDetails(it) }
+            if (uri != null) {
+                // Fetch contact details after picking the contact
+                fetchContactDetails(uri)
+            }
         }
-        adapter = ChatsListAdapter {chatId ->
-            val action = ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatId,null,null)
+        adapter = ChatsListAdapter { chatId ->
+            val action = ChatListFragmentDirections.actionChatListFragmentToChatFragment(chatId, null, null)
             findNavController().navigate(action)
         }
 
         binding.rvChats.adapter = adapter
 
         // Observe the chat list data
-        chatListViewModel.fetchChatList()
+        chatListViewModel.fetchChatList(currentUserUid ?: "")
         chatListViewModel.chatList.observe(viewLifecycleOwner) {chatList ->
             adapter.submitList(chatList)
         }
@@ -101,18 +108,57 @@ class ChatListFragment : Fragment(), FabClickListener {
                     if (pCursor.moveToFirst()) {
                         val phoneIndex = pCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                         val phoneNumber = pCursor.getString(phoneIndex)
+                        saveContactToFirebase(name, phoneNumber)
 
-                        // After retrieving contact, navigate to ChatFragment with the contact's data
-                        val action = ChatListFragmentDirections.actionChatListFragmentToChatFragment(
-                            chatId = "", // chatId is empty since it's a new chat
-                            contactName = name,
-                            contactPhoneNumber = phoneNumber
-                        )
-                        findNavController().navigate(action)
+//                        // After retrieving contact, navigate to ChatFragment with the contact's data
+//                        val action = ChatListFragmentDirections.actionChatListFragmentToChatFragment(
+//                            chatId = "", // chatId is empty since it's a new chat
+//                            contactName = name,
+//                            contactPhoneNumber = phoneNumber
+//                        )
+//                        findNavController().navigate(action)
                     }
                 }
             }
         }
+    }
+
+    // Save contact to Firebase Firestore
+    private fun saveContactToFirebase(contactName: String, contactPhoneNumber: String) {
+        if (currentUserUid == null) return
+
+        // Create a unique ID for the new chat
+        val newChatId = firestore.collection("chats").document().id
+
+        // Create contact data
+        val contactData = hashMapOf(
+            "name" to contactName,
+            "phoneNumber" to contactPhoneNumber,
+            "timestamp" to System.currentTimeMillis()
+        )
+
+        // Save the contact to the current user's contacts collection in Firestore
+        firestore.collection("users").document(currentUserUid)
+            .collection("contacts")
+            .document(contactPhoneNumber) // Using phone number as the document ID
+            .set(contactData)
+            .addOnSuccessListener {
+                // Once saved, navigate to the ChatFragment
+                navigateToChatFragment(newChatId, contactName, contactPhoneNumber)
+            }
+            .addOnFailureListener {
+                // Handle error
+            }
+    }
+
+    // Function to navigate to the ChatFragment with contact details
+    private fun navigateToChatFragment(chatId: String, contactName: String, contactPhoneNumber: String) {
+        val action = ChatListFragmentDirections.actionChatListFragmentToChatFragment(
+            chatId = chatId,
+            contactName = contactName,
+            contactPhoneNumber = contactPhoneNumber
+        )
+        findNavController().navigate(action)
     }
 
 }

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.ChangeBounds
@@ -31,6 +32,7 @@ import com.chatapplication.util.Util.KeyboardHelper.hideKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
@@ -51,8 +53,10 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
     private lateinit var navController: NavController
     private lateinit var clRootEditTextFieldContainer: ConstraintLayout
     private lateinit var chatId: String
-    private lateinit var adapter: ChatMessagesAdapter
     private val chatViewModel: ChatViewModel by viewModels()
+    private val args: ChatFragmentArgs by navArgs()
+    private lateinit var adapter: ChatMessagesAdapter
+    private val currentUserUid: String? = FirebaseAuth.getInstance().currentUser?.uid
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,55 +87,61 @@ class ChatFragment : Fragment(), View.OnClickListener, TextWatcher {
         (activity as? MainActivity)?.hideMainContent()
         handleBackPress()
         setListeners()
-        val args = ChatFragmentArgs.fromBundle(requireArguments())
-        chatId = args.chatId
-
-        // If chatId is empty, it's a new chat (add contact flow)
-        if(chatId.isEmpty()){
-            val contactName = args.contactName
-            val contactPhoneNumber = args.contactPhoneNumber
-
-            // Create a new chat using the contact's details and generate a unique chatId
-            chatId = createNewChat(contactName, contactPhoneNumber)
-        }
-
-        // Setup RecyclerView for messages
-        adapter = ChatMessagesAdapter()
-        rvMessage.layoutManager = LinearLayoutManager(requireContext())
-        rvMessage.adapter = adapter
-
-        // Fetch messages and observe changes
-        chatViewModel.fetchMessages(chatId)
-        chatViewModel.messages.observe(viewLifecycleOwner) {messages ->
+        val chatId = args.chatId
+        val contactName = args.contactName
+        binding.tvName.text = args.contactName
+        // Setup RecyclerView for chat messages
+        adapter = ChatMessagesAdapter(currentUserUid ?: "")
+        binding.rvMessage.adapter = adapter
+        chatViewModel.messages.observe(viewLifecycleOwner) { messages ->
             adapter.submitList(messages)
         }
+        // If chatId is empty, it's a new chat (add contact flow)
+//        if(chatId.isEmpty()){
+//            val contactName = args.contactName
+//            val contactPhoneNumber = args.contactPhoneNumber
+//
+//            // Create a new chat using the contact's details and generate a unique chatId
+//            chatId = createNewChat(contactName, contactPhoneNumber)
+//        }
+
+//        // Setup RecyclerView for messages
+//        adapter = ChatMessagesAdapter()
+//        rvMessage.layoutManager = LinearLayoutManager(requireContext())
+//        rvMessage.adapter = adapter
+
+        // Fetch messages and observe changes
+//        chatViewModel.fetchMessages(chatId)
+//        chatViewModel.messages.observe(viewLifecycleOwner) {messages ->
+//            adapter.submitList(messages)
+//        }
 
         // Send message on button click
         fabSend.setOnClickListener {
             val message = edtMessage.text.toString().trim()
             if (message.isNotEmpty()) {
-                chatViewModel.sendMessage(chatId, message)
+                chatViewModel.sendMessage(chatId, message, currentUserUid ?: "")
                 edtMessage.text?.clear()
             }
         }
     }
 
-    private fun createNewChat(contactName: String?, contactPhoneNumber: String?): String {
-        // Generate a unique chatId (e.g., using the current user's UID and the contact's phone number)
-        val currentUserId = chatViewModel.getCurrentUserId()  // Fetch current user ID
-        val chatId = "$currentUserId-$contactPhoneNumber"
-
-        // Add chat details to Firestore
-        val chatData = hashMapOf(
-            "participants" to listOf(currentUserId, contactPhoneNumber),
-            "name" to contactName,
-            "lastMessage" to "",
-            "timeStamp" to System.currentTimeMillis()
-        )
-        chatViewModel.addNewChat(chatId, chatData)
-
-        return chatId
-    }
+//    private fun createNewChat(contactName: String?, contactPhoneNumber: String?): String {
+//        // Generate a unique chatId (e.g., using the current user's UID and the contact's phone number)
+//        val currentUserId = chatViewModel.getCurrentUserId()  // Fetch current user ID
+//        val chatId = "$currentUserId-$contactPhoneNumber"
+//
+//        // Add chat details to Firestore
+//        val chatData = hashMapOf(
+//            "participants" to listOf(currentUserId, contactPhoneNumber),
+//            "name" to contactName,
+//            "lastMessage" to "",
+//            "timeStamp" to System.currentTimeMillis()
+//        )
+//        chatViewModel.addNewChat(chatId, chatData)
+//
+//        return chatId
+//    }
 
     override fun onResume() {
         super.onResume()

@@ -141,7 +141,7 @@ sealed class Permissions(vararg val permissions: String) {
             return if (PermissionManager.sdkEqOrAbove33()) {
                 arrayOf(READ_CONTACTS)
             } else if (PermissionManager.sdkEqOrAbove29()) {
-                arrayOf(READ_EXTERNAL_STORAGE)
+                arrayOf(READ_CONTACTS)
             } else {
                 arrayOf(
                     READ_EXTERNAL_STORAGE,

@@ -1,84 +1,69 @@
 package com.chatapplication.ui.feature.chat.adapter
 
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.chatapplication.databinding.LayoutChatsListBinding
-import com.chatapplication.databinding.LayoutMessageItemBinding
+import com.chatapplication.databinding.ItemMessageRecievedBinding
+import com.chatapplication.databinding.ItemMessageSentBinding
 import com.chatapplication.ui.feature.chat.model.Message
+import com.google.firebase.auth.FirebaseAuth
 
 class ChatMessagesAdapter(
-    private val currentUserId: String
-) : RecyclerView.Adapter<ChatMessagesAdapter.ChatMessageViewHolder>() {
+    private var messageList: List<Message>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val messageList = mutableListOf<Message>()
+    private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
-    inner class ChatMessageViewHolder(private val binding: LayoutMessageItemBinding) :
+    companion object {
+        const val VIEW_TYPE_SENT = 1
+        const val VIEW_TYPE_RECEIVED = 2
+    }
+
+    inner class SentMessageViewHolder(private val binding: ItemMessageSentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: Message) {
-            binding.tvMessage.text = message.messageText
-            binding.tvTime.text = message.timestamp.toString()
-
-            // Adjust message appearance based on sender (current user or contact)
-            if (message.senderId == currentUserId) {
-                // Align to the right (sent by the user)
-                binding.root.textAlignment = View.TEXT_ALIGNMENT_TEXT_END
-            } else {
-                // Align to the left (received)
-                binding.root.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
-            }
+            binding.messageText.text = message.messageText
+            binding.timestamp.text = message.timestamp.toString()
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatMessageViewHolder {
-        val binding = LayoutMessageItemBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
-        return ChatMessageViewHolder(binding)
+    inner class ReceivedMessageViewHolder(private val binding: ItemMessageRecievedBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(message: Message) {
+            binding.messageText.text = message.messageText
+            binding.timestamp.text = message.timestamp.toString()
+        }
     }
 
-    override fun onBindViewHolder(holder: ChatMessageViewHolder, position: Int) {
-        holder.bind(messageList[position])
+    override fun getItemViewType(position: Int): Int {
+        return if (messageList[position].senderId == currentUserId) VIEW_TYPE_SENT else VIEW_TYPE_RECEIVED
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == VIEW_TYPE_SENT) {
+            val binding = ItemMessageSentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SentMessageViewHolder(binding)
+        } else {
+            val binding = ItemMessageRecievedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ReceivedMessageViewHolder(binding)
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (getItemViewType(position) == VIEW_TYPE_SENT) {
+            (holder as SentMessageViewHolder).bind(messageList[position])
+        } else {
+            (holder as ReceivedMessageViewHolder).bind(messageList[position])
+        }
     }
 
     override fun getItemCount(): Int = messageList.size
 
-    fun submitList(newMessages: List<Message>) {
-        messageList.clear()
-        messageList.addAll(newMessages)
+    // Method to update the message list and notify the adapter
+    fun updateList(newMessages: List<Message>) {
+        messageList = newMessages
         notifyDataSetChanged()
     }
 }
-
-//class ChatMessagesAdapter : RecyclerView.Adapter<ChatMessagesAdapter.MessageViewHolder>() {
-//    private val message: MutableList<Message> = mutableListOf()
-//
-//    class MessageViewHolder(private val binding: LayoutMessageItemBinding): RecyclerView.ViewHolder(binding.root) {
-//        fun bind(message: Message) {
-//            binding.tvMessage.text = message.content
-//            binding.tvTime.text = message.timestamp.toString()
-//        }
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-//        val binding = LayoutMessageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        return MessageViewHolder(binding)
-//    }
-//
-//    override fun getItemCount(): Int = message.size
-//
-//    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-//        holder.bind(message[position])
-//    }
-//
-//    fun submitList(newMessage: List<Message>){
-//        message.clear()
-//        message.addAll(newMessage)
-//        notifyDataSetChanged()
-//    }
-//
-//}
